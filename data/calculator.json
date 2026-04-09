@@ -1,0 +1,53 @@
+{
+  "prices": {
+    "gasoline": {
+      "name": "휘발유",
+      "unit": "원/L",
+      "before": 1680,
+      "current": 2180,
+      "icon": "⛽"
+    },
+    "diesel": {
+      "name": "경유",
+      "unit": "원/L",
+      "before": 1520,
+      "current": 1980,
+      "icon": "🚛"
+    },
+    "gas": {
+      "name": "도시가스",
+      "unit": "원/m³",
+      "before": 980,
+      "current": 1150,
+      "icon": "🔥"
+    },
+    "electricity": {
+      "name": "전기요금",
+      "unit": "원/kWh",
+      "before": 130,
+      "current": 148,
+      "icon": "⚡"
+    }
+  },
+  "groceries": [
+    { "name": "라면 (5개입)", "before": 3980, "current": 4580, "icon": "🍜", "unit": "원" },
+    { "name": "식용유 (1L)", "before": 4500, "current": 5800, "icon": "🫒", "unit": "원" },
+    { "name": "달걀 (30구)", "before": 6500, "current": 7200, "icon": "🥚", "unit": "원" },
+    { "name": "우유 (1L)", "before": 2800, "current": 3100, "icon": "🥛", "unit": "원" },
+    { "name": "빵 (식빵)", "before": 3200, "current": 3800, "icon": "🍞", "unit": "원" },
+    { "name": "돼지고기 (100g)", "before": 1580, "current": 1780, "icon": "🥩", "unit": "원" },
+    { "name": "배달비 (평균)", "before": 3000, "current": 3500, "icon": "🛵", "unit": "원" },
+    { "name": "택시 기본요금", "before": 4800, "current": 5200, "icon": "🚕", "unit": "원" }
+  ],
+  "oilPrice": {
+    "before": 82.30,
+    "current": 120.47,
+    "unit": "USD/bbl"
+  },
+  "exchangeRate": {
+    "before": 1365,
+    "current": 1485,
+    "unit": "KRW/USD"
+  },
+  "updatedAt": "2026-04-09"
+}

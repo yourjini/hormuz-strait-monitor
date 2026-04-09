@@ -48,6 +48,26 @@ body {
   animation: fadeIn 0.3s ease-out;
 }
 
+/* Money rain animation */
+@keyframes moneyFall {
+  0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+.money-fall {
+  animation: moneyFall 3s ease-in infinite;
+}
+
+/* Comparison bounce */
+@keyframes compareBounce {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+.comparison-bounce {
+  animation: compareBounce 1.5s ease-in-out infinite;
+}
+
 /* Line clamp */
 .line-clamp-2 {
   display: -webkit-box;
