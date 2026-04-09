@@ -73,38 +73,46 @@ export async function GET() {
 
   const liveMeta = { oil: false, gas: false, fx: false }
 
-  if (oilR.status === 'fulfilled') {
+  // Yahoo가 null을 주면 샘플을 그대로 유지 (렌더 크래시 방지)
+  const isValid = (live) =>
+    live &&
+    typeof live.current === 'number' &&
+    typeof live.changeWeek === 'number' &&
+    Array.isArray(live.history) &&
+    live.history.length > 0
+
+  if (oilR.status === 'fulfilled' && isValid(oilR.value)) {
     liveMeta.oil = true
     const live = oilR.value
     fallback.oilPrice = {
       ...fallback.oilPrice,
       current: live.current,
-      change24h: live.change24h,
+      change24h: live.change24h ?? fallback.oilPrice.change24h,
       changeWeek: live.changeWeek,
       history: live.history,
       // preBlockade는 봉쇄 전 기준값이라 샘플 유지
     }
   }
 
-  if (gasR.status === 'fulfilled') {
+  if (gasR.status === 'fulfilled' && isValid(gasR.value)) {
     liveMeta.gas = true
     const live = gasR.value
     fallback.gasPrice = {
       ...fallback.gasPrice,
       current: live.current,
-      change24h: live.change24h,
+      change24h: live.change24h ?? fallback.gasPrice.change24h,
       changeWeek: live.changeWeek,
       history: live.history,
     }
   }
 
-  if (fxR.status === 'fulfilled') {
+  if (fxR.status === 'fulfilled' && isValid(fxR.value)) {
     liveMeta.fx = true
     const live = fxR.value
     fallback.exchangeRate = {
       ...fallback.exchangeRate,
       current: Math.round(live.current),
-      change24h: live.change24h,
+      change24h: live.change24h ?? fallback.exchangeRate.change24h,
       changeWeek: live.changeWeek,
       history: live.history.map((p) => ({ date: p.date, value: Math.round(p.value) })),
     }

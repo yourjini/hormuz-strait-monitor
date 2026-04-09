@@ -23,13 +23,18 @@ export default function EconomyCharts({ data }) {
       </div>
       {/* Top indicator cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {indicators.map(({ key, data: ind, color, bgColor }) => (
+        {indicators.map(({ key, data: ind, color, bgColor }) => {
+          if (!ind || ind.current == null) return null
+          const changeWeek = typeof ind.changeWeek === 'number' ? ind.changeWeek : 0
+          const preBlockade = typeof ind.preBlockade === 'number' && ind.preBlockade !== 0 ? ind.preBlockade : null
+          const deltaPct = preBlockade != null ? ((ind.current - preBlockade) / preBlockade) * 100 : null
+          return (
           <div key={key} className="rounded-lg border border-[#6b5432] bg-[#3a2d1c] p-4">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-gray-500">{ind.name}</span>
               <span className="text-[10px] px-1.5 py-0.5 rounded font-bold"
                 style={{ color, backgroundColor: bgColor }}>
-                +{ind.changeWeek.toFixed(1)}% (주간)
+                {changeWeek >= 0 ? '+' : ''}{changeWeek.toFixed(1)}% (주간)
               </span>
             </div>
             <div className="flex items-end gap-2 mb-3">
@@ -39,15 +44,18 @@ export default function EconomyCharts({ data }) {
               <span className="text-sm text-gray-500 mb-1">{ind.unit}</span>
             </div>
             <div className="flex items-center gap-3 text-xs text-gray-400 mb-3">
-              <span>봉쇄 전: {ind.preBlockade.toLocaleString()}</span>
-              <span className="text-red-400">
-                +{((ind.current - ind.preBlockade) / ind.preBlockade * 100).toFixed(1)}%
-              </span>
+              {preBlockade != null && <span>봉쇄 전: {preBlockade.toLocaleString()}</span>}
+              {deltaPct != null && (
+                <span className={deltaPct >= 0 ? 'text-red-400' : 'text-green-400'}>
+                  {deltaPct >= 0 ? '+' : ''}{deltaPct.toFixed(1)}%
+                </span>
+              )}
             </div>
             {/* Mini chart */}
             <MiniChart history={ind.history} color={color} />
           </div>
-        ))}
+          )
+        })}
       </div>
 
       {/* Consumer prices */}
