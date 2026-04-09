@@ -64,13 +64,13 @@ export default function CalculatorPage({ initialData }) {
     const yearlyDiff = totalDiff * 12
 
     setResult({
-      fuel: { before: fuelBefore, diff: fuelDiff, liters: monthlyLiters },
-      gas: { before: gasBefore, diff: gasDiff },
-      electricity: { before: elecBefore, diff: elecDiff },
-      grocery: { diff: groceryDiff, details: groceryDetails },
-      totalBefore,
-      totalDiff,
-      yearlyDiff,
+      fuel: { before: Math.round(fuelBefore), diff: Math.round(fuelDiff), liters: Math.round(monthlyLiters) },
+      gas: { before: Math.round(gasBefore), diff: Math.round(gasDiff) },
+      electricity: { before: Math.round(elecBefore), diff: Math.round(elecDiff) },
+      grocery: { diff: Math.round(groceryDiff), details: groceryDetails.map(d => ({ ...d, monthlyDiff: Math.round(d.monthlyDiff) })) },
+      totalBefore: Math.round(totalBefore),
+      totalDiff: Math.round(totalDiff),
+      yearlyDiff: Math.round(yearlyDiff),
     })
     setStep(2)
   }
@@ -549,7 +549,7 @@ function SliderInput({ label, value, min, max, step, unit, onChange, className =
 /* ── Share Buttons (카카오톡 / 트위터 / 복사) ── */
 function ShareButtons({ result, onBack }) {
   const [copied, setCopied] = useState(false)
-  const shareText = `호르무즈 해협 봉쇄로 우리집 월 +${result.totalDiff.toLocaleString()}원 추가 지출 예상! 연간 ${result.yearlyDiff.toLocaleString()}원!`
+  const shareText = `호르무즈 해협 봉쇄로 우리집 월 +${Math.round(result.totalDiff).toLocaleString()}원 추가 지출 예상! 연간 약 ${Math.round(result.yearlyDiff).toLocaleString()}원!`
   const shareUrl = typeof window !== 'undefined' ? window.location.origin + '/calculator' : ''
 
   const shareKakao = () => {

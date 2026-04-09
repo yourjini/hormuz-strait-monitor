@@ -10,11 +10,13 @@ export const metadata = {
     type: 'website',
     locale: 'ko_KR',
     siteName: 'Hormuz Strait Monitor',
+    images: [{ url: '/opengraph-image', width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Hormuz Strait Monitor',
     description: '호르무즈 해협 봉쇄 현황 + 내 지갑 계산기',
+    images: ['/opengraph-image'],
   },
   keywords: ['호르무즈', '해협', '봉쇄', '유가', '환율', '이란', '원유', '모니터링', 'Hormuz', 'Strait'],
 }
