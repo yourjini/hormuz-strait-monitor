@@ -10,6 +10,7 @@ import Footer from './Footer'
 
 export default function Dashboard({ initialData }) {
   const [data, setData] = useState(initialData)
+  const [lastRefresh, setLastRefresh] = useState(new Date())
   const [refreshing, setRefreshing] = useState(false)
 
   const refresh = useCallback(async () => {
@@ -28,12 +29,14 @@ export default function Dashboard({ initialData }) {
         newsRes.json(),
       ])
       setData({ status, ships, timeline, news })
+      setLastRefresh(new Date())
     } catch (err) {
       console.error('Refresh failed:', err)
     }
     setRefreshing(false)
   }, [])
 
+  // Auto-refresh every 60s
   useEffect(() => {
     const interval = setInterval(refresh, 60000)
     return () => clearInterval(interval)
@@ -42,30 +45,22 @@ export default function Dashboard({ initialData }) {
   const { status, ships, timeline, news } = data
 
   return (
-    <div className="min-h-screen bg-surface">
+    <div className="min-h-screen bg-[#0f2035]">
       <Header />
 
-      <main className="pt-16 min-h-screen">
-        <div className="p-4 sm:p-6 lg:p-8 space-y-6 max-w-screen-2xl mx-auto">
-
-          {/* Hero: Status Panel (full width) */}
+      {/* Main content */}
+      <main className="max-w-[1600px] mx-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
+        {/* Row 1: Status + Map (나란히) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <StatusPanel data={status} />
-
-          {/* Map + Timeline row */}
-          <section className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-            {/* Map - 9 cols */}
-            <div className="lg:col-span-9 rounded-2xl overflow-hidden border border-white/5 shadow-2xl bg-surface-container-lowest min-h-[400px] lg:min-h-[500px]">
-              <StraitMap ships={ships?.ships || []} summary={ships?.summary} />
-            </div>
-            {/* Timeline sidebar - 3 cols */}
-            <div className="lg:col-span-3">
-              <Timeline data={timeline} />
-            </div>
-          </section>
-
-          {/* News Grid */}
-          <NewsFeed data={news} />
+          <StraitMap ships={ships?.ships || []} summary={ships?.summary} />
         </div>
+
+        {/* Row 2: Timeline */}
+        <Timeline data={timeline} />
+
+        {/* Row 3: News (전체 너비) */}
+        <NewsFeed data={news} />
       </main>
 
       <Footer />
