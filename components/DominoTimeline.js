@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import DataBadge from './DataBadge'
 
 export default function DominoTimeline({ data }) {
   const [selectedPhase, setSelectedPhase] = useState('day1')
@@ -11,8 +12,11 @@ export default function DominoTimeline({ data }) {
 
   return (
     <div className="rounded-lg border border-[#6b5432] bg-[#3a2d1c] p-4">
-      <div className="text-xs text-gray-500 uppercase tracking-wider mb-4">
-        Domino Effect — 봉쇄 기간별 예상 충격
+      <div className="flex items-center gap-2 mb-4">
+        <div className="text-xs text-gray-500 uppercase tracking-wider">
+          Domino Effect — 봉쇄 기간별 예상 충격
+        </div>
+        <DataBadge kind="scenario" />
       </div>
 
       {/* Phase selector - clickable timeline bar */}

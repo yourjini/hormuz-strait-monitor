@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import EconomyCharts from './EconomyCharts'
+import FuelPrices from './FuelPrices'
 import IndustryImpact from './IndustryImpact'
 import DominoTimeline from './DominoTimeline'
 import RefreshIndicator from './RefreshIndicator'
@@ -53,12 +54,17 @@ export default function EconomyPage({ initialData }) {
         {/* Economy indicators */}
         <EconomyCharts data={economy} />
 
+        {/* Domestic fuel prices (live — Opinet) */}
+        <FuelPrices />
+
         {/* Two column: Industry + Domino */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <IndustryImpact data={industries} />
           <DominoTimeline data={domino} />
-          <EconomyBanner />
         </div>
+
+        {/* FactLens 배너 — 전체 너비 슬림 */}
+        <EconomyBanner />
       </main>
 
       <Footer />

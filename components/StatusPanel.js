@@ -1,5 +1,7 @@
 'use client'
 
+import DataBadge from './DataBadge'
+
 export default function StatusPanel({ data }) {
   if (!data) return null
 
@@ -24,7 +26,10 @@ export default function StatusPanel({ data }) {
       {/* Status header - big and bold */}
       <div className="flex items-start justify-between mb-4">
         <div>
-          <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-2">Strait Status</div>
+          <div className="flex items-center gap-2 mb-2">
+            <div className="text-[10px] text-gray-500 uppercase tracking-wider">Strait Status</div>
+            <DataBadge kind="curated" source="언론 보도·정부 발표" />
+          </div>
           <div className="flex items-center gap-2 sm:gap-3">
             <div className="relative">
               <div className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full ${config.color}`} />

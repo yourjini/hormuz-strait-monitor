@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import DataBadge from './DataBadge'
 
 const sectorIcons = {
   oil: '🛢️', plane: '✈️', ship: '🚢', factory: '🏭', farm: '🌾', building: '🏗️',
@@ -17,7 +18,10 @@ export default function IndustryImpact({ data }) {
   return (
     <div className="rounded-lg border border-[#6b5432] bg-[#3a2d1c] p-4">
       <div className="flex items-center justify-between mb-4">
-        <span className="text-xs text-gray-500 uppercase tracking-wider">피해 산업 분석</span>
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-gray-500 uppercase tracking-wider">피해 산업 분석</span>
+          <DataBadge kind="scenario" />
+        </div>
         <div className="flex gap-1">
           {[
             { key: 'domestic', label: '국내' },

@@ -1,5 +1,7 @@
 'use client'
 
+import DataBadge from './DataBadge'
+
 export default function EconomyCharts({ data }) {
   if (!data) return null
 
@@ -11,6 +13,14 @@ export default function EconomyCharts({ data }) {
 
   return (
     <div className="space-y-4">
+      <div className="flex items-center justify-between px-1">
+        <div className="text-[10px] text-gray-500 uppercase tracking-wider">Economic Indicators</div>
+        {data._meta?.live && (data._meta.live.oil || data._meta.live.fx || data._meta.live.gas) ? (
+          <DataBadge kind="live" source={data._meta.provider || 'Yahoo Finance'} />
+        ) : (
+          <DataBadge kind="scenario" source="봉쇄 시나리오" />
+        )}
+      </div>
       {/* Top indicator cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {indicators.map(({ key, data: ind, color, bgColor }) => (

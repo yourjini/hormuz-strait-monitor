@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import DataBadge from './DataBadge'
 
 const sectorIcons = {
   blocked: '🚫',
@@ -24,6 +25,7 @@ export default function Timeline({ data = [] }) {
         <div className="flex items-center gap-2">
           <div className="text-xs text-gray-500 uppercase tracking-wider">Status Timeline</div>
           <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#1c1509] text-gray-400">{data.length}건</span>
+          <DataBadge kind="curated" />
         </div>
         {/* Mini status summary */}
         <div className="flex gap-1">

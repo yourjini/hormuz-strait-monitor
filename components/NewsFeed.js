@@ -1,6 +1,13 @@
 'use client'
 
+import DataBadge from './DataBadge'
+
 export default function NewsFeed({ data = [] }) {
+  // data가 배열이거나 {items, source, provider} 객체일 수 있음
+  const isWrapped = data && !Array.isArray(data) && Array.isArray(data.items)
+  const items = isWrapped ? data.items : Array.isArray(data) ? data : []
+  const dataSource = isWrapped ? data.source : 'sample'
+  const provider = isWrapped ? data.provider : '샘플 헤드라인'
   const categoryConfig = {
     geopolitics: { label: '지정학', color: 'text-red-400 bg-red-500/10' },
     oil_market: { label: '유가', color: 'text-amber-400 bg-amber-500/10' },
@@ -13,11 +20,17 @@ export default function NewsFeed({ data = [] }) {
   return (
     <div className="rounded-lg border border-[#6b5432] bg-[#3a2d1c] p-4 h-full flex flex-col">
       <div className="flex items-center justify-between mb-3">
-        <div className="text-xs text-gray-500 uppercase tracking-wider">Related News</div>
-        <div className="text-[10px] text-gray-500">{data.length}건</div>
+        <div className="flex items-center gap-2">
+          <div className="text-xs text-gray-500 uppercase tracking-wider">Related News</div>
+          <DataBadge
+            kind={dataSource === 'live' ? 'live' : 'scenario'}
+            source={provider}
+          />
+        </div>
+        <div className="text-[10px] text-gray-500">{items.length}건</div>
       </div>
       <div className="flex-1 overflow-y-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pr-1">
-        {[...data].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)).map((article) => {
+        {[...items].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)).map((article) => {
           const cat = categoryConfig[article.category] || { label: article.category, color: 'text-gray-400 bg-gray-500/10' }
           const isRecent = (Date.now() - new Date(article.publishedAt).getTime()) < 3 * 60 * 60 * 1000
 

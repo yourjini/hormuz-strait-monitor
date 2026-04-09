@@ -1,5 +1,7 @@
 'use client'
 
+import DataBadge from './DataBadge'
+
 export default function ShipStats({ data }) {
   if (!data?.summary) return null
   const s = data.summary
@@ -60,6 +62,11 @@ export default function ShipStats({ data }) {
   ]
 
   return (
+    <div className="space-y-2">
+      <div className="flex items-center justify-between px-1">
+        <div className="text-[10px] text-gray-500 uppercase tracking-wider">Ship Stats</div>
+        <DataBadge kind="scenario" source="해수부·외신 보도 기반" />
+      </div>
     <div className="grid grid-cols-2 gap-3">
       {cards.map((card) => (
         <div key={card.label} className="rounded-lg border border-[#6b5432] bg-[#3a2d1c] p-4">
@@ -76,6 +83,7 @@ export default function ShipStats({ data }) {
           )}
         </div>
       ))}
+    </div>
     </div>
   )
 }

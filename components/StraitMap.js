@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useCallback } from 'react'
+import DataBadge from './DataBadge'
 
 export default function StraitMap({ ships = [], summary }) {
   const [hovered, setHovered] = useState(null)
@@ -92,7 +93,10 @@ export default function StraitMap({ ships = [], summary }) {
   return (
     <div className="rounded-lg border border-[#6b5432] bg-[#3a2d1c] p-4">
       <div className="flex items-center justify-between mb-3">
-        <div className="text-xs text-gray-500 uppercase tracking-wider">Strait Map</div>
+        <div className="flex items-center gap-2">
+          <div className="text-xs text-gray-500 uppercase tracking-wider">Strait Map</div>
+          <DataBadge kind="scenario" source="AIS 미연동" />
+        </div>
         <div className="flex items-center gap-3">
           <button
             onClick={() => setShowKorean(!showKorean)}
