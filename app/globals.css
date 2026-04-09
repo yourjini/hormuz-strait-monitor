@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: #0f2035;
+  background-color: #111318;
   color: #e2e8f0;
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
@@ -13,14 +13,14 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #142840;
+  background: #1a1d24;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e3a5f;
+  background: #2a2d35;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a4a6f;
+  background: #3a3d45;
 }
 
 /* Status pulse animation */

@@ -19,11 +19,11 @@ export default function Timeline({ data = [] }) {
   }
 
   return (
-    <div className="rounded-lg border border-[#2a4a6f] bg-[#182f4a] p-4">
+    <div className="rounded-lg border border-[#2a2d35] bg-[#1a1d24] p-4">
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <div className="text-xs text-gray-500 uppercase tracking-wider">Status Timeline</div>
-          <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#142840] text-gray-400">{data.length}건</span>
+          <span className="text-[10px] px-1.5 py-0.5 rounded bg-[#161920] text-gray-400">{data.length}건</span>
         </div>
         {/* Mini status summary */}
         <div className="flex gap-1">
@@ -50,7 +50,7 @@ export default function Timeline({ data = [] }) {
             <div key={entry.id} className="relative pl-8 pb-5 group">
               {/* Vertical line */}
               {idx < displayData.length - 1 && (
-                <div className="absolute left-[11px] top-6 bottom-0 w-0.5 bg-gradient-to-b from-[#2a4a6f] to-[#2a4a6f]/30" />
+                <div className="absolute left-[11px] top-6 bottom-0 w-0.5 bg-gradient-to-b from-[#2a2d35] to-[#2a2d35]/30" />
               )}
 
               {/* Dot with glow for latest */}
@@ -67,7 +67,7 @@ export default function Timeline({ data = [] }) {
               <div className={`rounded-lg p-3 transition-colors ${
                 isFirst
                   ? `${config.bg} border border-${entry.status === 'blocked' ? 'red' : 'amber'}-500/20`
-                  : 'bg-[#142840]/50 border border-transparent hover:border-[#2a4a6f]/50'
+                  : 'bg-[#161920]/50 border border-transparent hover:border-[#2a2d35]/50'
               }`}>
                 {/* Header row */}
                 <div className="flex items-center gap-2 mb-1.5 flex-wrap">
@@ -113,7 +113,7 @@ export default function Timeline({ data = [] }) {
       {data.length > 4 && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="w-full mt-2 py-2 rounded-lg border border-[#2a4a6f]/50 text-xs text-gray-400 hover:text-gray-200 hover:border-[#2a4a6f] transition-colors flex items-center justify-center gap-1.5"
+          className="w-full mt-2 py-2 rounded-lg border border-[#2a2d35]/50 text-xs text-gray-400 hover:text-gray-200 hover:border-[#2a2d35] transition-colors flex items-center justify-center gap-1.5"
         >
           {expanded ? (
             <>접기 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" /></svg></>

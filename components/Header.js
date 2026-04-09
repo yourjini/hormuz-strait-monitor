@@ -13,7 +13,7 @@ export default function Header() {
   const pathname = usePathname()
 
   return (
-    <header className="border-b border-[#2a4a6f] bg-[#142840]/80 backdrop-blur sticky top-0 z-50">
+    <header className="border-b border-[#2a2d35] bg-[#161920]/80 backdrop-blur sticky top-0 z-50">
       <div className="max-w-[1600px] mx-auto px-3 sm:px-4 py-2 sm:py-3 flex items-center justify-between">
         <div className="flex items-center gap-3 sm:gap-6 min-w-0">
           {/* Logo */}
@@ -38,7 +38,7 @@ export default function Header() {
                   className={`flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded text-[11px] sm:text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
                     isActive
                       ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-500/30'
-                      : 'text-gray-400 hover:text-gray-200 border border-transparent hover:border-[#2a4a6f]'
+                      : 'text-gray-400 hover:text-gray-200 border border-transparent hover:border-[#2a2d35]'
                   }`}
                 >
                   <svg className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

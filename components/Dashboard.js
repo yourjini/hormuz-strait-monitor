@@ -45,7 +45,7 @@ export default function Dashboard({ initialData }) {
   const { status, ships, timeline, news } = data
 
   return (
-    <div className="min-h-screen bg-[#0f2035]">
+    <div className="min-h-screen bg-[#111318]">
       <Header />
 
       {/* Main content */}
