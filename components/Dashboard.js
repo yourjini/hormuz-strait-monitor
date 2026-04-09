@@ -48,7 +48,7 @@ export default function Dashboard({ initialData }) {
       <Header />
 
       {/* Main content */}
-      <main className="max-w-[1600px] mx-auto p-4 space-y-4">
+      <main className="max-w-[1600px] mx-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
         {/* Row 1: Status + Map (나란히) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <StatusPanel data={status} />

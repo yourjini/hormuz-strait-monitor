@@ -21,10 +21,10 @@ export default function StatusPanel({ data }) {
       <div className="flex items-start justify-between mb-4">
         <div>
           <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Strait Status</div>
-          <div className="flex items-center gap-3">
-            <div className={`w-4 h-4 rounded-full ${config.color} ${config.pulse}`} />
-            <span className={`text-2xl font-bold ${config.text}`}>{config.label}</span>
-            <span className="text-sm text-gray-400">({config.labelKo})</span>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <div className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full ${config.color} ${config.pulse}`} />
+            <span className={`text-xl sm:text-2xl font-bold ${config.text}`}>{config.label}</span>
+            <span className="text-xs sm:text-sm text-gray-400">({config.labelKo})</span>
           </div>
         </div>
         <div className="text-right">

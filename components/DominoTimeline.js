@@ -42,9 +42,9 @@ export default function DominoTimeline({ data }) {
               <button
                 key={p.id}
                 onClick={() => setSelectedPhase(p.id)}
-                className="flex flex-col items-center gap-1 group"
+                className="flex flex-col items-center gap-0.5 sm:gap-1 group"
               >
-                <div className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all duration-300 ${
+                <div className={`w-7 h-7 sm:w-9 sm:h-9 rounded-full flex items-center justify-center text-[10px] sm:text-xs font-bold border-2 transition-all duration-300 ${
                   isActive
                     ? `${dotColor} border-transparent text-white scale-110 shadow-lg`
                     : isPast
@@ -53,8 +53,9 @@ export default function DominoTimeline({ data }) {
                 }`}>
                   {p.label}
                 </div>
-                <span className={`text-[10px] transition-colors ${isActive ? 'text-gray-200 font-bold' : 'text-gray-500'}`}>
-                  {p.period}
+                <span className={`text-[9px] sm:text-[10px] transition-colors ${isActive ? 'text-gray-200 font-bold' : 'text-gray-500'}`}>
+                  <span className="hidden sm:inline">{p.period}</span>
+                  <span className="sm:hidden">{p.label}</span>
                 </span>
               </button>
             )

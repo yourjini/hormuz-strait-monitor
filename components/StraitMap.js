@@ -43,10 +43,10 @@ export default function StraitMap({ ships = [], summary }) {
     <div className="rounded-lg border border-[#2a4a6f] bg-[#182f4a] p-4">
       <div className="flex items-center justify-between mb-3">
         <div className="text-xs text-gray-500 uppercase tracking-wider">Strait Map</div>
-        <div className="flex gap-3 text-[10px]">
+        <div className="flex flex-wrap justify-end gap-x-2 gap-y-1 text-[9px] sm:text-[10px]">
           {Object.entries({ trapped: '고립', passing: '통과중', diverted: '우회', blocked: '봉쇄', escort: '호위', patrol: '순찰' }).map(([key, label]) => (
             <div key={key} className="flex items-center gap-1">
-              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: statusColors[key] }} />
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full" style={{ backgroundColor: statusColors[key] }} />
               <span className="text-gray-400">{label}</span>
             </div>
           ))}
@@ -56,22 +56,22 @@ export default function StraitMap({ ships = [], summary }) {
       <div className="relative">
         {/* Ship stats overlay */}
         {summary && (
-          <div className="absolute top-2 left-2 z-10 flex gap-2">
-            <div className="bg-[#0e1e30]/90 backdrop-blur border border-[#2a4a6f] rounded px-2.5 py-1.5 text-center">
-              <div className="text-lg font-black text-red-400 leading-none">{summary.trapped?.toLocaleString()}</div>
-              <div className="text-[9px] text-gray-400">고립</div>
+          <div className="absolute top-2 left-2 z-10 flex flex-wrap gap-1.5 sm:gap-2 max-w-[calc(100%-16px)]">
+            <div className="bg-[#0e1e30]/90 backdrop-blur border border-[#2a4a6f] rounded px-1.5 sm:px-2.5 py-1 sm:py-1.5 text-center">
+              <div className="text-sm sm:text-lg font-black text-red-400 leading-none">{summary.trapped?.toLocaleString()}</div>
+              <div className="text-[8px] sm:text-[9px] text-gray-400">고립</div>
             </div>
-            <div className="bg-[#0e1e30]/90 backdrop-blur border border-[#2a4a6f] rounded px-2.5 py-1.5 text-center">
-              <div className="text-lg font-black text-cyan-400 leading-none">{summary.koreanShips}</div>
-              <div className="text-[9px] text-gray-400">한국</div>
+            <div className="bg-[#0e1e30]/90 backdrop-blur border border-[#2a4a6f] rounded px-1.5 sm:px-2.5 py-1 sm:py-1.5 text-center">
+              <div className="text-sm sm:text-lg font-black text-cyan-400 leading-none">{summary.koreanShips}</div>
+              <div className="text-[8px] sm:text-[9px] text-gray-400">한국</div>
             </div>
-            <div className="bg-[#0e1e30]/90 backdrop-blur border border-[#2a4a6f] rounded px-2.5 py-1.5 text-center">
-              <div className="text-lg font-black text-green-400 leading-none">{summary.transitToday}</div>
-              <div className="text-[9px] text-gray-400">오늘 통과</div>
+            <div className="bg-[#0e1e30]/90 backdrop-blur border border-[#2a4a6f] rounded px-1.5 sm:px-2.5 py-1 sm:py-1.5 text-center">
+              <div className="text-sm sm:text-lg font-black text-green-400 leading-none">{summary.transitToday}</div>
+              <div className="text-[8px] sm:text-[9px] text-gray-400">통과</div>
             </div>
-            <div className="bg-[#0e1e30]/90 backdrop-blur border border-[#2a4a6f] rounded px-2.5 py-1.5 text-center">
-              <div className="text-lg font-black text-amber-400 leading-none">{summary.insuranceSurcharge}%</div>
-              <div className="text-[9px] text-gray-400">보험료↑</div>
+            <div className="bg-[#0e1e30]/90 backdrop-blur border border-[#2a4a6f] rounded px-1.5 sm:px-2.5 py-1 sm:py-1.5 text-center">
+              <div className="text-sm sm:text-lg font-black text-amber-400 leading-none">{summary.insuranceSurcharge}%</div>
+              <div className="text-[8px] sm:text-[9px] text-gray-400">보험료↑</div>
             </div>
           </div>
         )}

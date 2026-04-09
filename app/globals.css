@@ -75,3 +75,12 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Hide scrollbar for nav on mobile */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

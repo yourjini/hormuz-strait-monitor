@@ -52,7 +52,7 @@ export default function EconomyCharts({ data }) {
             </div>
           </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+        <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3">
           {data.consumerPrice.items.map((item) => (
             <div key={item.name} className="rounded bg-[#142840] border border-[#2a4a6f]/50 p-3 text-center">
               <div className="text-xs text-gray-400 mb-1">{item.name}</div>
