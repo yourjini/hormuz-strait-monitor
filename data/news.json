@@ -37,11 +37,47 @@
   },
   {
     "id": "n5",
-    "headline": "한국, 호르무즈 해협 통과 유조선 안전 우려 고조",
-    "summary": "한국 원유 수입의 70%가 호르무즈 해협을 통과. 정부 비상대책회의 소집.",
+    "headline": "정부 비상경제대책회의 소집, 석유 비축분 방출 검토",
+    "summary": "한국 원유 수입의 70%가 호르무즈 해협을 통과. 산업부 장관 주재 긴급 회의.",
     "source": "연합뉴스",
     "url": "#",
-    "publishedAt": "2026-04-08T23:00:00Z",
+    "publishedAt": "2026-04-09T01:00:00Z",
+    "category": "domestic"
+  },
+  {
+    "id": "n13",
+    "headline": "S. Korea braces for oil supply disruption amid Hormuz crisis",
+    "summary": "Seoul convenes emergency meeting as 70% of crude imports pass through the Strait of Hormuz.",
+    "source": "Korea Herald",
+    "url": "#",
+    "publishedAt": "2026-04-09T00:30:00Z",
+    "category": "domestic"
+  },
+  {
+    "id": "n14",
+    "headline": "주유소 휘발유 2,000원 돌파 임박... 소비자 불안 확산",
+    "summary": "전국 주유소 평균 휘발유 가격 1,980원 돌파. 다음 주 리터당 2,000원 넘을 전망.",
+    "source": "KBS",
+    "url": "#",
+    "publishedAt": "2026-04-08T23:30:00Z",
+    "category": "domestic"
+  },
+  {
+    "id": "n15",
+    "headline": "Korean refiners face margin squeeze as crude costs surge",
+    "summary": "SK Innovation, S-OIL and GS Caltex warn of tightening refining margins as import costs soar.",
+    "source": "Korea Times",
+    "url": "#",
+    "publishedAt": "2026-04-08T22:00:00Z",
+    "category": "domestic"
+  },
+  {
+    "id": "n16",
+    "headline": "해운업계 비상... HMM 중동 노선 운임 200% 인상",
+    "summary": "HMM, 팬오션 등 국적 선사들이 중동발 컨테이너·벌크 운임을 긴급 인상.",
+    "source": "매일경제",
+    "url": "#",
+    "publishedAt": "2026-04-08T21:00:00Z",
     "category": "domestic"
   },
   {
@@ -79,6 +115,15 @@
     "url": "#",
     "publishedAt": "2026-04-08T12:00:00Z",
     "category": "shipping"
+  },
+  {
+    "id": "n17",
+    "headline": "LNG 수급 비상... 가스공사 카타르산 물량 확보 총력",
+    "summary": "카타르 LNG 수출 차질에 한국가스공사가 대체 물량 확보에 나섰다. 호주·미국산 긴급 도입 추진.",
+    "source": "한국경제",
+    "url": "#",
+    "publishedAt": "2026-04-08T10:00:00Z",
+    "category": "domestic"
   },
   {
     "id": "n10",
