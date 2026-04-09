@@ -1,4 +1,5 @@
 import './globals.css'
+import Script from 'next/script'
 
 export const metadata = {
   title: 'Hormuz Strait Monitor — 호르무즈 해협 실시간 모니터링',
@@ -23,9 +24,15 @@ export default function RootLayout({ children }) {
     <html lang="ko">
       <head>
         <meta charSet="utf-8" />
-        <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossOrigin="anonymous" />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <Script
+          src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
+      </body>
     </html>
   )
 }

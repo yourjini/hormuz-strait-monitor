@@ -556,30 +556,30 @@ function ShareButtons({ result, onBack }) {
     if (typeof window === 'undefined') return
     const Kakao = window.Kakao
     if (!Kakao) {
-      alert('카카오 SDK를 불러오지 못했습니다.')
+      // SDK 아직 안 불러와졌으면 fallback
+      fallbackShare()
       return
     }
-    if (!Kakao.isInitialized()) {
-      const key = process.env.NEXT_PUBLIC_KAKAO_JS_KEY
-      if (!key) {
-        // 카카오 키 없으면 기본 공유로 fallback
-        fallbackShare()
-        return
+    try {
+      if (!Kakao.isInitialized()) {
+        Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY || '00ba60c1107f5428fb8ed0ee660035d8')
       }
-      Kakao.init(key)
+      Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: '내 지갑 계산기 — 호르무즈 봉쇄 영향',
+          description: shareText,
+          imageUrl: shareUrl.replace('/calculator', '') + '/app-icon.svg',
+          link: { mobileWebUrl: shareUrl, webUrl: shareUrl },
+        },
+        buttons: [
+          { title: '나도 계산해보기', link: { mobileWebUrl: shareUrl, webUrl: shareUrl } },
+        ],
+      })
+    } catch (err) {
+      console.error('Kakao share error:', err)
+      fallbackShare()
     }
-    Kakao.Share.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: '내 지갑 계산기 결과',
-        description: shareText,
-        imageUrl: 'https://hormuz-monitor.vercel.app/og-image.png',
-        link: { mobileWebUrl: shareUrl, webUrl: shareUrl },
-      },
-      buttons: [
-        { title: '나도 계산해보기', link: { mobileWebUrl: shareUrl, webUrl: shareUrl } },
-      ],
-    })
   }
 
   const shareTwitter = () => {
