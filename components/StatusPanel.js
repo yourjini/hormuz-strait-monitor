@@ -93,11 +93,24 @@ export default function StatusPanel({ data }) {
 }
 
 function getRelativeTime(dateStr) {
-  const diff = Date.now() - new Date(dateStr).getTime()
+  const d = new Date(dateStr)
+  const diff = Date.now() - d.getTime()
+
+  if (diff < 0) {
+    const m = (d.getMonth() + 1).toString().padStart(2, '0')
+    const day = d.getDate().toString().padStart(2, '0')
+    const h = d.getHours().toString().padStart(2, '0')
+    const min = d.getMinutes().toString().padStart(2, '0')
+    return `${m}.${day} ${h}:${min}`
+  }
+
   const mins = Math.floor(diff / 60000)
   if (mins < 60) return `${mins}분 전`
   const hours = Math.floor(mins / 60)
-  if (hours < 24) return `${hours}시간 전`
+  const remainMins = mins % 60
+  if (hours < 24) {
+    return remainMins > 0 ? `${hours}시간 ${remainMins}분 전` : `${hours}시간 전`
+  }
   const days = Math.floor(hours / 24)
   return `${days}일 전`
 }

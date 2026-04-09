@@ -46,14 +46,19 @@ export default function Timeline({ data = [] }) {
 function formatTime(dateStr) {
   const d = new Date(dateStr)
   const diff = Date.now() - d.getTime()
-  const hours = Math.floor(diff / (1000 * 60 * 60))
 
-  if (hours < 1) return '방금'
-  if (hours < 24) return `${hours}시간 전`
+  // 미래 또는 24시간 이상이면 절대 시간
+  if (diff < 0 || diff >= 24 * 60 * 60 * 1000) {
+    const month = d.getMonth() + 1
+    const day = d.getDate()
+    const h = d.getHours().toString().padStart(2, '0')
+    const m = d.getMinutes().toString().padStart(2, '0')
+    return `${month}/${day} ${h}:${m}`
+  }
 
-  const month = d.getMonth() + 1
-  const day = d.getDate()
-  const h = d.getHours().toString().padStart(2, '0')
-  const m = d.getMinutes().toString().padStart(2, '0')
-  return `${month}/${day} ${h}:${m}`
+  const mins = Math.floor(diff / 60000)
+  if (mins < 60) return `${mins}분 전`
+  const hours = Math.floor(mins / 60)
+  const remainMins = mins % 60
+  return remainMins > 0 ? `${hours}시간 ${remainMins}분 전` : `${hours}시간 전`
 }
