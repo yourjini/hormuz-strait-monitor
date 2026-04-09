@@ -8,6 +8,7 @@ import Timeline from './Timeline'
 import NewsFeed from './NewsFeed'
 import Header from './Header'
 import Footer from './Footer'
+import RefreshIndicator from './RefreshIndicator'
 import { DashboardBanner } from './FactLensBanner'
 
 export default function Dashboard({ initialData }) {
@@ -52,6 +53,9 @@ export default function Dashboard({ initialData }) {
 
       {/* Main content */}
       <main className="max-w-[1600px] mx-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
+        {/* Refresh indicator */}
+        <RefreshIndicator lastRefresh={lastRefresh} refreshing={refreshing} intervalLabel="1분" />
+
         {/* Row 1: Status + (Map + ShipStats) — 높이 맞춤 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <StatusPanel data={status} />

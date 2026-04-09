@@ -11,14 +11,14 @@ export default function StraitMap({ ships = [], summary }) {
   const dragStart = useRef(null)
   const svgRef = useRef(null)
 
-  const MIN_ZOOM = 1
+  const MIN_ZOOM = 0.6
   const MAX_ZOOM = 3
 
-  const handleZoomIn = () => setZoom(z => Math.min(z + 0.5, MAX_ZOOM))
+  const handleZoomIn = () => setZoom(z => Math.min(parseFloat((z + 0.2).toFixed(2)), MAX_ZOOM))
   const handleZoomOut = () => {
     setZoom(z => {
-      const next = Math.max(z - 0.5, MIN_ZOOM)
-      if (next === MIN_ZOOM) setPan({ x: 0, y: 0 })
+      const next = Math.max(parseFloat((z - 0.2).toFixed(2)), MIN_ZOOM)
+      if (next <= 1) setPan({ x: 0, y: 0 })
       return next
     })
   }
@@ -27,10 +27,10 @@ export default function StraitMap({ ships = [], summary }) {
   const handleWheel = useCallback((e) => {
     e.preventDefault()
     e.stopPropagation()
-    const delta = e.deltaY > 0 ? -0.25 : 0.25
+    const delta = e.deltaY > 0 ? -0.15 : 0.15
     setZoom(z => {
-      const next = Math.min(Math.max(z + delta, MIN_ZOOM), MAX_ZOOM)
-      if (next === MIN_ZOOM) setPan({ x: 0, y: 0 })
+      const next = parseFloat(Math.min(Math.max(z + delta, MIN_ZOOM), MAX_ZOOM).toFixed(2))
+      if (next <= 1) setPan({ x: 0, y: 0 })
       return next
     })
   }, [])
@@ -140,14 +140,26 @@ export default function StraitMap({ ships = [], summary }) {
 
         {/* Zoom controls */}
         <div className="absolute top-2 right-2 z-20 flex flex-col gap-1">
-          <button onClick={handleZoomIn} className="w-7 h-7 rounded bg-[#0a0704]/90 backdrop-blur border border-[#6b5432] text-gray-300 hover:text-white hover:border-cyan-500/50 flex items-center justify-center text-sm font-bold transition-colors">+</button>
-          <button onClick={handleZoomOut} className="w-7 h-7 rounded bg-[#0a0704]/90 backdrop-blur border border-[#6b5432] text-gray-300 hover:text-white hover:border-cyan-500/50 flex items-center justify-center text-sm font-bold transition-colors">−</button>
-          {zoom > 1 && (
-            <button onClick={handleReset} className="w-7 h-7 rounded bg-[#0a0704]/90 backdrop-blur border border-[#6b5432] text-gray-400 hover:text-white hover:border-cyan-500/50 flex items-center justify-center text-[10px] transition-colors">⟲</button>
+          <button
+            onClick={handleZoomIn}
+            disabled={zoom >= MAX_ZOOM}
+            className="w-7 h-7 rounded bg-[#0a0704]/90 backdrop-blur border border-[#6b5432] text-gray-300 hover:text-white hover:border-amber-400/50 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center text-sm font-bold transition-colors"
+            title="확대"
+          >+</button>
+          <button
+            onClick={handleZoomOut}
+            disabled={zoom <= MIN_ZOOM}
+            className="w-7 h-7 rounded bg-[#0a0704]/90 backdrop-blur border border-[#6b5432] text-gray-300 hover:text-white hover:border-amber-400/50 disabled:opacity-30 disabled:cursor-not-allowed flex items-center justify-center text-sm font-bold transition-colors"
+            title="축소"
+          >−</button>
+          {zoom !== 1 && (
+            <button
+              onClick={handleReset}
+              className="w-7 h-7 rounded bg-[#0a0704]/90 backdrop-blur border border-[#6b5432] text-gray-400 hover:text-white hover:border-amber-400/50 flex items-center justify-center text-[10px] transition-colors"
+              title="초기화"
+            >⟲</button>
           )}
-          {zoom > 1 && (
-            <div className="text-[9px] text-center text-cyan-400 font-bold mt-0.5">{zoom.toFixed(1)}x</div>
-          )}
+          <div className="text-[9px] text-center text-amber-300 font-bold mt-0.5 tabular-nums">{zoom.toFixed(1)}x</div>
         </div>
 
         {/* SVG map with zoom/pan */}

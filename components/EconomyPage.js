@@ -6,11 +6,13 @@ import Footer from './Footer'
 import EconomyCharts from './EconomyCharts'
 import IndustryImpact from './IndustryImpact'
 import DominoTimeline from './DominoTimeline'
+import RefreshIndicator from './RefreshIndicator'
 import { EconomyBanner } from './FactLensBanner'
 
 export default function EconomyPage({ initialData }) {
   const [data, setData] = useState(initialData)
   const [refreshing, setRefreshing] = useState(false)
+  const [lastRefresh, setLastRefresh] = useState(new Date())
 
   const refresh = useCallback(async () => {
     setRefreshing(true)
@@ -26,6 +28,7 @@ export default function EconomyPage({ initialData }) {
         dominoRes.json(),
       ])
       setData({ economy, industries, domino })
+      setLastRefresh(new Date())
     } catch (err) {
       console.error('Refresh failed:', err)
     }
@@ -44,6 +47,9 @@ export default function EconomyPage({ initialData }) {
       <Header />
 
       <main className="max-w-[1600px] mx-auto p-4 space-y-4">
+        {/* Refresh indicator */}
+        <RefreshIndicator lastRefresh={lastRefresh} refreshing={refreshing} intervalLabel="1분" />
+
         {/* Economy indicators */}
         <EconomyCharts data={economy} />
 
