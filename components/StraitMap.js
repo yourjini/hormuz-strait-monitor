@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-export default function StraitMap({ ships = [] }) {
+export default function StraitMap({ ships = [], summary }) {
   const [hovered, setHovered] = useState(null)
 
   // Ship positions by zone (randomized within zone bounds)
@@ -54,6 +54,27 @@ export default function StraitMap({ ships = [] }) {
       </div>
 
       <div className="relative">
+        {/* Ship stats overlay */}
+        {summary && (
+          <div className="absolute top-2 left-2 z-10 flex gap-2">
+            <div className="bg-[#0e1e30]/90 backdrop-blur border border-[#2a4a6f] rounded px-2.5 py-1.5 text-center">
+              <div className="text-lg font-black text-red-400 leading-none">{summary.trapped?.toLocaleString()}</div>
+              <div className="text-[9px] text-gray-400">고립</div>
+            </div>
+            <div className="bg-[#0e1e30]/90 backdrop-blur border border-[#2a4a6f] rounded px-2.5 py-1.5 text-center">
+              <div className="text-lg font-black text-cyan-400 leading-none">{summary.koreanShips}</div>
+              <div className="text-[9px] text-gray-400">한국</div>
+            </div>
+            <div className="bg-[#0e1e30]/90 backdrop-blur border border-[#2a4a6f] rounded px-2.5 py-1.5 text-center">
+              <div className="text-lg font-black text-green-400 leading-none">{summary.transitToday}</div>
+              <div className="text-[9px] text-gray-400">오늘 통과</div>
+            </div>
+            <div className="bg-[#0e1e30]/90 backdrop-blur border border-[#2a4a6f] rounded px-2.5 py-1.5 text-center">
+              <div className="text-lg font-black text-amber-400 leading-none">{summary.insuranceSurcharge}%</div>
+              <div className="text-[9px] text-gray-400">보험료↑</div>
+            </div>
+          </div>
+        )}
         <svg viewBox="0 0 700 350" className="w-full h-auto" style={{ minHeight: 250 }}>
           {/* Water background */}
           <rect width="700" height="350" fill="#0e1e30" rx="8" />

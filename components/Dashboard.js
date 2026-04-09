@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import StatusPanel from './StatusPanel'
-import ShipStats from './ShipStats'
 import StraitMap from './StraitMap'
 import Timeline from './Timeline'
 import NewsFeed from './NewsFeed'
@@ -53,14 +52,11 @@ export default function Dashboard({ initialData }) {
         {/* Row 1: Status + Map (나란히) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <StatusPanel data={status} />
-          <StraitMap ships={ships?.ships || []} />
+          <StraitMap ships={ships?.ships || []} summary={ships?.summary} />
         </div>
 
-        {/* Row 2: Ship Stats + Timeline */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <ShipStats data={ships} />
-          <Timeline data={timeline} />
-        </div>
+        {/* Row 2: Timeline */}
+        <Timeline data={timeline} />
 
         {/* Row 3: News (전체 너비) */}
         <NewsFeed data={news} />
