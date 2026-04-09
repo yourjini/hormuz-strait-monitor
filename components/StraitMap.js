@@ -25,6 +25,7 @@ export default function StraitMap({ ships = [], summary }) {
 
   const handleWheel = useCallback((e) => {
     e.preventDefault()
+    e.stopPropagation()
     const delta = e.deltaY > 0 ? -0.25 : 0.25
     setZoom(z => {
       const next = Math.min(Math.max(z + delta, MIN_ZOOM), MAX_ZOOM)
@@ -32,6 +33,19 @@ export default function StraitMap({ ships = [], summary }) {
       return next
     })
   }, [])
+
+  // Attach wheel as non-passive so preventDefault works
+  const wheelRef = useRef(null)
+  const setRefs = useCallback((node) => {
+    svgRef.current = node
+    if (wheelRef.current) {
+      wheelRef.current.removeEventListener('wheel', handleWheel)
+    }
+    if (node) {
+      node.addEventListener('wheel', handleWheel, { passive: false })
+    }
+    wheelRef.current = node
+  }, [handleWheel])
 
   const handlePointerDown = (e) => {
     if (zoom <= 1) return
@@ -125,8 +139,7 @@ export default function StraitMap({ ships = [], summary }) {
 
         {/* SVG map with zoom/pan */}
         <div
-          ref={svgRef}
-          onWheel={handleWheel}
+          ref={setRefs}
           onPointerDown={handlePointerDown}
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
