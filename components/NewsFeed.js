@@ -16,7 +16,7 @@ export default function NewsFeed({ data = [] }) {
         <div className="text-xs text-gray-500 uppercase tracking-wider">Related News</div>
         <div className="text-[10px] text-gray-500">{data.length}건</div>
       </div>
-      <div className="flex-1 overflow-y-auto space-y-3 pr-1">
+      <div className="flex-1 overflow-y-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pr-1">
         {[...data].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)).map((article) => {
           const cat = categoryConfig[article.category] || { label: article.category, color: 'text-gray-400 bg-gray-500/10' }
           const isRecent = (Date.now() - new Date(article.publishedAt).getTime()) < 3 * 60 * 60 * 1000

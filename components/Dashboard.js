@@ -49,30 +49,21 @@ export default function Dashboard({ initialData }) {
       <Header />
 
       {/* Main content */}
-      <main className="max-w-[1600px] mx-auto p-4">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {/* Left column (2/3) */}
-          <div className="lg:col-span-2 space-y-4">
-            {/* Top: Status + Stats */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <StatusPanel data={status} />
-              <ShipStats data={ships} />
-            </div>
-
-            {/* Map */}
-            <StraitMap ships={ships?.ships || []} />
-
-            {/* Timeline */}
-            <Timeline data={timeline} />
-          </div>
-
-          {/* Right column (1/3): News */}
-          <div className="lg:col-span-1">
-            <div className="lg:sticky lg:top-16">
-              <NewsFeed data={news} />
-            </div>
-          </div>
+      <main className="max-w-[1600px] mx-auto p-4 space-y-4">
+        {/* Row 1: Status + Map (나란히) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <StatusPanel data={status} />
+          <StraitMap ships={ships?.ships || []} />
         </div>
+
+        {/* Row 2: Ship Stats + Timeline */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <ShipStats data={ships} />
+          <Timeline data={timeline} />
+        </div>
+
+        {/* Row 3: News (전체 너비) */}
+        <NewsFeed data={news} />
       </main>
 
       {/* Footer */}
