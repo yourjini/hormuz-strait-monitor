@@ -553,33 +553,41 @@ function ShareButtons({ result, onBack }) {
   const shareUrl = typeof window !== 'undefined' ? window.location.origin + '/calculator' : ''
 
   const shareKakao = () => {
-    if (typeof window === 'undefined') return
-    const Kakao = window.Kakao
-    if (!Kakao) {
-      // SDK 아직 안 불러와졌으면 fallback
-      fallbackShare()
+    // 모바일: Web Share API (카카오톡 포함 앱 선택 가능)
+    // PC: 카카오 SDK 시도 → 실패 시 클립보드 복사
+    if (navigator.share) {
+      navigator.share({
+        title: '내 지갑 계산기 — 호르무즈 봉쇄 영향',
+        text: shareText + ' 당신은 얼마?',
+        url: shareUrl,
+      }).catch(() => {})
       return
     }
-    try {
-      if (!Kakao.isInitialized()) {
-        Kakao.init(process.env.NEXT_PUBLIC_KAKAO_JS_KEY || '00ba60c1107f5428fb8ed0ee660035d8')
+
+    // PC에서는 카카오 SDK 시도
+    const Kakao = typeof window !== 'undefined' ? window.Kakao : null
+    if (Kakao && Kakao.isInitialized()) {
+      try {
+        Kakao.Share.sendDefault({
+          objectType: 'feed',
+          content: {
+            title: '내 지갑 계산기 — 호르무즈 봉쇄 영향',
+            description: shareText,
+            imageUrl: shareUrl.replace('/calculator', '') + '/app-icon.svg',
+            link: { mobileWebUrl: shareUrl, webUrl: shareUrl },
+          },
+          buttons: [
+            { title: '나도 계산해보기', link: { mobileWebUrl: shareUrl, webUrl: shareUrl } },
+          ],
+        })
+        return
+      } catch (err) {
+        console.error('Kakao SDK error:', err)
       }
-      Kakao.Share.sendDefault({
-        objectType: 'feed',
-        content: {
-          title: '내 지갑 계산기 — 호르무즈 봉쇄 영향',
-          description: shareText,
-          imageUrl: shareUrl.replace('/calculator', '') + '/app-icon.svg',
-          link: { mobileWebUrl: shareUrl, webUrl: shareUrl },
-        },
-        buttons: [
-          { title: '나도 계산해보기', link: { mobileWebUrl: shareUrl, webUrl: shareUrl } },
-        ],
-      })
-    } catch (err) {
-      console.error('Kakao share error:', err)
-      fallbackShare()
     }
+
+    // 최종 fallback: 클립보드 복사
+    copyToClipboard()
   }
 
   const shareTwitter = () => {
