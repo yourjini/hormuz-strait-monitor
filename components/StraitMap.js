@@ -76,67 +76,98 @@ export default function StraitMap({ ships = [], summary }) {
           </div>
         )}
         <svg viewBox="0 0 700 350" className="w-full h-auto" style={{ minHeight: 250 }}>
-          {/* Water background */}
-          <rect width="700" height="350" fill="#0e1e30" rx="8" />
+          {/* Water background — brighter ocean */}
+          <rect width="700" height="350" fill="#132d4a" rx="8" />
 
-          {/* Grid lines */}
+          {/* Water gradient for depth feel */}
+          <defs>
+            <radialGradient id="waterGlow" cx="50%" cy="55%" r="60%">
+              <stop offset="0%" stopColor="#1a3d5c" />
+              <stop offset="100%" stopColor="#132d4a" />
+            </radialGradient>
+          </defs>
+          <rect width="700" height="350" fill="url(#waterGlow)" rx="8" />
+
+          {/* Grid lines — slightly brighter */}
           {[100, 200, 300, 400, 500, 600].map(x => (
-            <line key={`gx${x}`} x1={x} y1="0" x2={x} y2="350" stroke="#162640" strokeWidth="0.5" />
+            <line key={`gx${x}`} x1={x} y1="0" x2={x} y2="350" stroke="#1e3a5a" strokeWidth="0.5" />
           ))}
           {[70, 140, 210, 280].map(y => (
-            <line key={`gy${y}`} x1="0" y1={y} x2="700" y2={y} stroke="#162640" strokeWidth="0.5" />
+            <line key={`gy${y}`} x1="0" y1={y} x2="700" y2={y} stroke="#1e3a5a" strokeWidth="0.5" />
           ))}
 
-          {/* Iran (top landmass) */}
+          {/* Iran (top landmass) — brighter land */}
           <path
             d="M 0 0 L 700 0 L 700 80 C 650 85, 600 95, 550 110 C 500 130, 460 150, 420 165 C 400 172, 380 170, 350 160 C 320 150, 300 135, 270 120 C 240 105, 200 95, 150 90 C 100 85, 50 80, 0 75 Z"
-            fill="#213555"
-            stroke="#334d70"
+            fill="#2a4a6f"
+            stroke="#3d6490"
             strokeWidth="1"
           />
-          <text x="300" y="55" fill="#5a7a9f" fontSize="14" fontWeight="bold" textAnchor="middle">IRAN</text>
+          <text x="300" y="55" fill="#7a9fc4" fontSize="14" fontWeight="bold" textAnchor="middle">IRAN</text>
 
           {/* UAE (bottom-left) */}
           <path
             d="M 0 350 L 0 260 C 30 255, 60 250, 100 252 C 140 254, 180 260, 220 270 C 250 278, 270 290, 280 310 C 285 325, 285 340, 280 350 Z"
-            fill="#213555"
-            stroke="#334d70"
+            fill="#2a4a6f"
+            stroke="#3d6490"
             strokeWidth="1"
           />
-          <text x="100" y="310" fill="#5a7a9f" fontSize="12" fontWeight="bold" textAnchor="middle">UAE</text>
+          <text x="100" y="310" fill="#7a9fc4" fontSize="12" fontWeight="bold" textAnchor="middle">UAE</text>
 
           {/* Oman (bottom-right) */}
           <path
             d="M 380 350 C 385 330, 400 305, 420 290 C 445 272, 475 260, 510 255 C 550 250, 590 252, 630 258 C 660 262, 685 270, 700 280 L 700 350 Z"
-            fill="#213555"
-            stroke="#334d70"
+            fill="#2a4a6f"
+            stroke="#3d6490"
             strokeWidth="1"
           />
-          <text x="550" y="310" fill="#5a7a9f" fontSize="12" fontWeight="bold" textAnchor="middle">OMAN</text>
+          <text x="550" y="310" fill="#7a9fc4" fontSize="12" fontWeight="bold" textAnchor="middle">OMAN</text>
 
-          {/* Strait channel - dashed shipping lanes */}
+          {/* Compass rose — top right */}
+          <g transform="translate(655, 45)">
+            {/* Compass circle */}
+            <circle cx="0" cy="0" r="22" fill="#132d4a" stroke="#3d6490" strokeWidth="0.8" opacity="0.9" />
+            {/* N arrow */}
+            <polygon points="0,-18 -4,-8 4,-8" fill="#ef4444" />
+            {/* S arrow */}
+            <polygon points="0,18 -4,8 4,8" fill="#5a7a9f" />
+            {/* E arrow */}
+            <polygon points="18,0 8,-4 8,4" fill="#5a7a9f" />
+            {/* W arrow */}
+            <polygon points="-18,0 -8,-4 -8,4" fill="#5a7a9f" />
+            {/* Cross lines */}
+            <line x1="0" y1="-7" x2="0" y2="7" stroke="#3d6490" strokeWidth="0.5" />
+            <line x1="-7" y1="0" x2="7" y2="0" stroke="#3d6490" strokeWidth="0.5" />
+            {/* Labels */}
+            <text x="0" y="-11" fill="#ef4444" fontSize="7" fontWeight="bold" textAnchor="middle">N</text>
+            <text x="0" y="16" fill="#7a9fc4" fontSize="6" textAnchor="middle">S</text>
+            <text x="13" y="2.5" fill="#7a9fc4" fontSize="6" textAnchor="middle">E</text>
+            <text x="-13" y="2.5" fill="#7a9fc4" fontSize="6" textAnchor="middle">W</text>
+          </g>
+
+          {/* Strait channel - dashed shipping lanes — brighter */}
           <path
             d="M 100 200 C 200 195, 280 185, 350 190 C 400 195, 430 210, 500 230 C 550 240, 620 245, 680 240"
             fill="none"
-            stroke="#2a4a6f"
+            stroke="#3a6a9f"
             strokeWidth="2"
             strokeDasharray="8 4"
           />
           <path
             d="M 100 220 C 200 215, 280 205, 350 210 C 400 215, 430 230, 500 250 C 550 258, 620 260, 680 255"
             fill="none"
-            stroke="#2a4a6f"
+            stroke="#3a6a9f"
             strokeWidth="2"
             strokeDasharray="8 4"
           />
 
-          {/* Zone labels */}
-          <text x="130" y="170" fill="#2a4a6f" fontSize="11" fontWeight="bold" textAnchor="middle">PERSIAN GULF</text>
-          <text x="370" y="240" fill="#2a4a6f" fontSize="9" textAnchor="middle">STRAIT OF HORMUZ</text>
-          <text x="570" y="205" fill="#2a4a6f" fontSize="11" fontWeight="bold" textAnchor="middle">GULF OF OMAN</text>
+          {/* Zone labels — brighter */}
+          <text x="130" y="170" fill="#3a6a9f" fontSize="11" fontWeight="bold" textAnchor="middle">PERSIAN GULF</text>
+          <text x="370" y="240" fill="#3a6a9f" fontSize="9" textAnchor="middle">STRAIT OF HORMUZ</text>
+          <text x="570" y="205" fill="#3a6a9f" fontSize="11" fontWeight="bold" textAnchor="middle">GULF OF OMAN</text>
 
           {/* Blockade indicator - red zone */}
-          <ellipse cx="370" cy="195" rx="55" ry="30" fill="rgba(239,68,68,0.08)" stroke="rgba(239,68,68,0.3)" strokeWidth="1" strokeDasharray="4 2" />
+          <ellipse cx="370" cy="195" rx="55" ry="30" fill="rgba(239,68,68,0.1)" stroke="rgba(239,68,68,0.35)" strokeWidth="1" strokeDasharray="4 2" />
           <text x="370" y="175" fill="#ef4444" fontSize="8" textAnchor="middle" className="animate-blink">⚠ BLOCKADE ZONE</text>
 
           {/* Ships */}
