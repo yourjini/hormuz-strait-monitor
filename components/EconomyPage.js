@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Header from './Header'
+import Footer from './Footer'
 import EconomyCharts from './EconomyCharts'
 import IndustryImpact from './IndustryImpact'
 import DominoTimeline from './DominoTimeline'
@@ -52,9 +53,7 @@ export default function EconomyPage({ initialData }) {
         </div>
       </main>
 
-      <footer className="border-t border-[#2a4a6f] mt-8 py-4 text-center text-[10px] text-gray-600">
-        Hormuz Strait Monitor — 갱신 주기: 유가·환율 1시간 | 뉴스 3시간 | 봉쇄 현황 6시간 | 출처: Bloomberg, Reuters, CNBC, 연합뉴스 등
-      </footer>
+      <Footer />
     </div>
   )
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Header from './Header'
+import Footer from './Footer'
 
 export default function CalculatorPage({ initialData }) {
   const [data] = useState(initialData)
@@ -110,6 +111,7 @@ export default function CalculatorPage({ initialData }) {
           />
         )}
       </main>
+      <Footer />
     </div>
   )
 }
