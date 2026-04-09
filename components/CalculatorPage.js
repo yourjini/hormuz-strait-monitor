@@ -464,29 +464,8 @@ function ResultPanel({ result, inputs, data, onBack }) {
       {/* 비교 메시지 */}
       <ComparisonMessage totalDiff={result.totalDiff} />
 
-      {/* 버튼들 */}
-      <div className="relative z-10 flex gap-3">
-        <button
-          onClick={onBack}
-          className="flex-1 py-3 rounded-lg border border-[#2a4a6f] text-gray-400 hover:text-gray-200 transition-colors text-sm"
-        >
-          ← 다시 입력
-        </button>
-        <button
-          onClick={() => {
-            const text = `호르무즈 해협 봉쇄로 우리집 월 +${result.totalDiff.toLocaleString()}원 추가 지출 예상 😱 연간 ${result.yearlyDiff.toLocaleString()}원! 당신은 얼마? 👉`
-            if (navigator.share) {
-              navigator.share({ title: '내 지갑 계산기', text })
-            } else {
-              navigator.clipboard.writeText(text)
-              alert('클립보드에 복사되었습니다!')
-            }
-          }}
-          className="flex-1 py-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold text-sm hover:from-cyan-400 hover:to-blue-400 transition-all"
-        >
-          결과 공유하기 📢
-        </button>
-      </div>
+      {/* 공유 버튼들 */}
+      <ShareButtons result={result} onBack={onBack} />
     </div>
   )
 }
@@ -563,6 +542,108 @@ function SliderInput({ label, value, min, max, step, unit, onChange, className =
           [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyan-400 [&::-webkit-slider-thumb]:shadow-lg
           [&::-webkit-slider-thumb]:shadow-cyan-500/30"
       />
+    </div>
+  )
+}
+
+/* ── Share Buttons (카카오톡 / 트위터 / 복사) ── */
+function ShareButtons({ result, onBack }) {
+  const [copied, setCopied] = useState(false)
+  const shareText = `호르무즈 해협 봉쇄로 우리집 월 +${result.totalDiff.toLocaleString()}원 추가 지출 예상! 연간 ${result.yearlyDiff.toLocaleString()}원!`
+  const shareUrl = typeof window !== 'undefined' ? window.location.origin + '/calculator' : ''
+
+  const shareKakao = () => {
+    if (typeof window === 'undefined') return
+    const Kakao = window.Kakao
+    if (!Kakao) {
+      alert('카카오 SDK를 불러오지 못했습니다.')
+      return
+    }
+    if (!Kakao.isInitialized()) {
+      const key = process.env.NEXT_PUBLIC_KAKAO_JS_KEY
+      if (!key) {
+        // 카카오 키 없으면 기본 공유로 fallback
+        fallbackShare()
+        return
+      }
+      Kakao.init(key)
+    }
+    Kakao.Share.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '내 지갑 계산기 결과',
+        description: shareText,
+        imageUrl: 'https://hormuz-monitor.vercel.app/og-image.png',
+        link: { mobileWebUrl: shareUrl, webUrl: shareUrl },
+      },
+      buttons: [
+        { title: '나도 계산해보기', link: { mobileWebUrl: shareUrl, webUrl: shareUrl } },
+      ],
+    })
+  }
+
+  const shareTwitter = () => {
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText + ' 당신은 얼마?')}&url=${encodeURIComponent(shareUrl)}`
+    window.open(url, '_blank', 'width=600,height=400')
+  }
+
+  const copyToClipboard = () => {
+    const text = `${shareText} 당신은 얼마? 👉 ${shareUrl}`
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+
+  const fallbackShare = () => {
+    if (navigator.share) {
+      navigator.share({ title: '내 지갑 계산기', text: shareText, url: shareUrl })
+    } else {
+      copyToClipboard()
+    }
+  }
+
+  return (
+    <div className="relative z-10 space-y-3">
+      {/* Share row */}
+      <div className="grid grid-cols-3 gap-2">
+        <button
+          onClick={shareKakao}
+          className="flex flex-col items-center gap-1.5 py-3 rounded-lg bg-[#FEE500] hover:bg-[#FDD800] transition-colors active:scale-[0.97]"
+        >
+          <svg viewBox="0 0 24 24" className="w-6 h-6" fill="#3C1E1E">
+            <path d="M12 3C6.48 3 2 6.54 2 10.84c0 2.76 1.82 5.18 4.56 6.6-.14.53-.92 3.4-.95 3.63 0 0-.02.17.09.23.11.07.24.01.24.01.32-.04 3.7-2.44 4.28-2.86.57.08 1.16.13 1.78.13 5.52 0 10-3.54 10-7.74C22 6.54 17.52 3 12 3" />
+          </svg>
+          <span className="text-[11px] font-bold text-[#3C1E1E]">카카오톡</span>
+        </button>
+        <button
+          onClick={shareTwitter}
+          className="flex flex-col items-center gap-1.5 py-3 rounded-lg bg-[#1DA1F2] hover:bg-[#1a94da] transition-colors active:scale-[0.97]"
+        >
+          <svg viewBox="0 0 24 24" className="w-6 h-6" fill="#fff">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+          <span className="text-[11px] font-bold text-white">X (트위터)</span>
+        </button>
+        <button
+          onClick={copyToClipboard}
+          className="flex flex-col items-center gap-1.5 py-3 rounded-lg bg-[#2a4a6f] hover:bg-[#345580] transition-colors active:scale-[0.97]"
+        >
+          <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="#e2e8f0" strokeWidth="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" />
+            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+          </svg>
+          <span className="text-[11px] font-bold text-gray-200">{copied ? '복사됨!' : '링크 복사'}</span>
+        </button>
+      </div>
+
+      {/* Back button */}
+      <button
+        onClick={onBack}
+        className="w-full py-3 rounded-lg border border-[#2a4a6f] text-gray-400 hover:text-gray-200 transition-colors text-sm"
+      >
+        ← 다시 입력하기
+      </button>
     </div>
   )
 }

@@ -23,6 +23,7 @@ export default function RootLayout({ children }) {
     <html lang="ko">
       <head>
         <meta charSet="utf-8" />
+        <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.4/kakao.min.js" crossOrigin="anonymous" />
       </head>
       <body>{children}</body>
     </html>
