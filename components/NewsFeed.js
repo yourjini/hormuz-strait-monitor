@@ -17,7 +17,7 @@ export default function NewsFeed({ data = [] }) {
         <div className="text-[10px] text-gray-500">{data.length}건</div>
       </div>
       <div className="flex-1 overflow-y-auto space-y-3 pr-1">
-        {data.map((article) => {
+        {[...data].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)).map((article) => {
           const cat = categoryConfig[article.category] || { label: article.category, color: 'text-gray-400 bg-gray-500/10' }
           const isRecent = (Date.now() - new Date(article.publishedAt).getTime()) < 3 * 60 * 60 * 1000
 
@@ -56,11 +56,29 @@ export default function NewsFeed({ data = [] }) {
 }
 
 function formatNewsTime(dateStr) {
-  const diff = Date.now() - new Date(dateStr).getTime()
+  const d = new Date(dateStr)
+  const diff = Date.now() - d.getTime()
+
+  if (diff < 0) {
+    // 미래 날짜인 경우 절대 시간 표시
+    return formatAbsolute(d)
+  }
+
   const mins = Math.floor(diff / 60000)
   if (mins < 60) return `${mins}분 전`
   const hours = Math.floor(mins / 60)
-  if (hours < 24) return `${hours}시간 전`
+  const remainMins = mins % 60
+  if (hours < 24) {
+    return remainMins > 0 ? `${hours}시간 ${remainMins}분 전` : `${hours}시간 전`
+  }
   const days = Math.floor(hours / 24)
   return `${days}일 전`
+}
+
+function formatAbsolute(d) {
+  const m = (d.getMonth() + 1).toString().padStart(2, '0')
+  const day = d.getDate().toString().padStart(2, '0')
+  const h = d.getHours().toString().padStart(2, '0')
+  const min = d.getMinutes().toString().padStart(2, '0')
+  return `${m}.${day} ${h}:${min}`
 }
