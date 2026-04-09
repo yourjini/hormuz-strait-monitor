@@ -69,7 +69,7 @@ export default function ShipStats({ data }) {
         const trendBad = card.invertTrend ? !isUp : isUp
 
         return (
-          <div key={card.label} className="rounded-lg border border-[#1e3a5f] bg-[#111d32] p-4">
+          <div key={card.label} className="rounded-lg border border-[#2a4a6f] bg-[#182f4a] p-4">
             <div className="flex items-center gap-2 mb-2">
               <div className={`${card.bg} ${card.color} p-1.5 rounded`}>{card.icon}</div>
               <span className="text-xs text-gray-400">{card.label}</span>

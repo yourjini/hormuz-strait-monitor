@@ -17,7 +17,7 @@ export default function StatusPanel({ data }) {
   const updatedAgo = getRelativeTime(data.updatedAt)
 
   return (
-    <div className={`rounded-lg border ${config.border} bg-[#111d32] p-5`}>
+    <div className={`rounded-lg border ${config.border} bg-[#182f4a] p-5`}>
       <div className="flex items-start justify-between mb-4">
         <div>
           <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Strait Status</div>

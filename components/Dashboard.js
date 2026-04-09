@@ -45,7 +45,7 @@ export default function Dashboard({ initialData }) {
   const { status, ships, timeline, news } = data
 
   return (
-    <div className="min-h-screen bg-[#0a1628]">
+    <div className="min-h-screen bg-[#0f2035]">
       <Header />
 
       {/* Main content */}
@@ -76,7 +76,7 @@ export default function Dashboard({ initialData }) {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-[#1e3a5f] mt-8 py-4 text-center text-[10px] text-gray-600">
+      <footer className="border-t border-[#2a4a6f] mt-8 py-4 text-center text-[10px] text-gray-600">
         Hormuz Strait Monitor — Sample data for demonstration purposes. Not real-time data.
       </footer>
     </div>

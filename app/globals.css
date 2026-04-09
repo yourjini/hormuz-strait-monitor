@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: #0a1628;
+  background-color: #0f2035;
   color: #e2e8f0;
   font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
 }
@@ -13,7 +13,7 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0d1b2a;
+  background: #142840;
 }
 ::-webkit-scrollbar-thumb {
   background: #1e3a5f;

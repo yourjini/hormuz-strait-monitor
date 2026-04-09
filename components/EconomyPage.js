@@ -38,7 +38,7 @@ export default function EconomyPage({ initialData }) {
   const { economy, industries, domino } = data
 
   return (
-    <div className="min-h-screen bg-[#0a1628]">
+    <div className="min-h-screen bg-[#0f2035]">
       <Header />
 
       <main className="max-w-[1600px] mx-auto p-4 space-y-4">
@@ -52,7 +52,7 @@ export default function EconomyPage({ initialData }) {
         </div>
       </main>
 
-      <footer className="border-t border-[#1e3a5f] mt-8 py-4 text-center text-[10px] text-gray-600">
+      <footer className="border-t border-[#2a4a6f] mt-8 py-4 text-center text-[10px] text-gray-600">
         Hormuz Strait Monitor — Sample data for demonstration purposes. Not real-time data.
       </footer>
     </div>

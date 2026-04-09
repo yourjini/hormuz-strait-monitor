@@ -8,7 +8,7 @@ export default function Timeline({ data = [] }) {
   }
 
   return (
-    <div className="rounded-lg border border-[#1e3a5f] bg-[#111d32] p-4">
+    <div className="rounded-lg border border-[#2a4a6f] bg-[#182f4a] p-4">
       <div className="text-xs text-gray-500 uppercase tracking-wider mb-3">Status Timeline</div>
       <div className="space-y-0 max-h-[300px] overflow-y-auto pr-2">
         {data.map((entry, idx) => {
@@ -17,15 +17,15 @@ export default function Timeline({ data = [] }) {
             <div key={entry.id} className="relative pl-6 pb-4">
               {/* Vertical line */}
               {idx < data.length - 1 && (
-                <div className="absolute left-[7px] top-3 bottom-0 w-px bg-[#1e3a5f]" />
+                <div className="absolute left-[7px] top-3 bottom-0 w-px bg-[#2a4a6f]" />
               )}
               {/* Dot */}
-              <div className={`absolute left-0 top-1 w-[15px] h-[15px] rounded-full ${config.dot} border-2 border-[#111d32]`} />
+              <div className={`absolute left-0 top-1 w-[15px] h-[15px] rounded-full ${config.dot} border-2 border-[#182f4a]`} />
 
               <div className="flex items-start justify-between gap-2">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
-                    <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${config.text} bg-[#0d1b2a]`}>
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${config.text} bg-[#142840]`}>
                       {config.label}
                     </span>
                     <span className="text-[10px] text-gray-500">{formatTime(entry.timestamp)}</span>
