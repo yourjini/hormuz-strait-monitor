@@ -4,14 +4,14 @@ export default function NewsFeed({ data = [] }) {
   const categoryConfig = {
     geopolitics: { label: '지정학', color: 'text-red-400 bg-red-500/10' },
     oil_market: { label: '유가', color: 'text-amber-400 bg-amber-500/10' },
-    military: { label: '군사', color: 'text-purple-400 bg-purple-500/10' },
+    military: { label: '군사', color: 'text-red-400 bg-red-500/10' },
     shipping: { label: '해운', color: 'text-cyan-400 bg-cyan-500/10' },
-    diplomacy: { label: '외교', color: 'text-blue-400 bg-blue-500/10' },
+    diplomacy: { label: '외교', color: 'text-cyan-400 bg-cyan-500/10' },
     domestic: { label: '국내', color: 'text-green-400 bg-green-500/10' },
   }
 
   return (
-    <div className="rounded-lg border border-[#3d3526] bg-[#241f16] p-4 h-full flex flex-col">
+    <div className="rounded-lg border border-[#6b5432] bg-[#3a2d1c] p-4 h-full flex flex-col">
       <div className="flex items-center justify-between mb-3">
         <div className="text-xs text-gray-500 uppercase tracking-wider">Related News</div>
         <div className="text-[10px] text-gray-500">{data.length}건</div>
@@ -27,7 +27,7 @@ export default function NewsFeed({ data = [] }) {
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-lg border border-[#3d3526]/50 bg-[#211c15] p-3 hover:border-cyan-500/30 transition-colors group"
+              className="block rounded-lg border border-[#6b5432]/50 bg-[#1c1509] p-3 hover:border-cyan-500/30 transition-colors group"
             >
               <div className="flex items-center gap-2 mb-1.5">
                 <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${cat.color}`}>

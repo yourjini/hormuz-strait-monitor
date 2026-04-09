@@ -10,7 +10,7 @@ export default function DominoTimeline({ data }) {
   const phase = data.phases.find(p => p.id === selectedPhase)
 
   return (
-    <div className="rounded-lg border border-[#3d3526] bg-[#241f16] p-4">
+    <div className="rounded-lg border border-[#6b5432] bg-[#3a2d1c] p-4">
       <div className="text-xs text-gray-500 uppercase tracking-wider mb-4">
         Domino Effect — 봉쇄 기간별 예상 충격
       </div>
@@ -18,7 +18,7 @@ export default function DominoTimeline({ data }) {
       {/* Phase selector - clickable timeline bar */}
       <div className="relative mb-6">
         {/* Background line */}
-        <div className="absolute top-4 left-0 right-0 h-1 bg-[#3d3526] rounded-full" />
+        <div className="absolute top-4 left-0 right-0 h-1 bg-[#6b5432] rounded-full" />
 
         {/* Progress fill */}
         <div
@@ -49,7 +49,7 @@ export default function DominoTimeline({ data }) {
                     ? `${dotColor} border-transparent text-white scale-110 shadow-lg`
                     : isPast
                       ? `${dotColor}/60 border-transparent text-white/80`
-                      : 'bg-[#211c15] border-[#3d3526] text-gray-500 group-hover:border-gray-400'
+                      : 'bg-[#1c1509] border-[#6b5432] text-gray-500 group-hover:border-gray-400'
                 }`}>
                   {p.label}
                 </div>
@@ -75,7 +75,7 @@ export default function DominoTimeline({ data }) {
             {phase.effects.map((effect, idx) => (
               <div
                 key={idx}
-                className="flex items-start gap-3 rounded-lg bg-[#211c15] border border-[#3d3526]/50 p-3"
+                className="flex items-start gap-3 rounded-lg bg-[#1c1509] border border-[#6b5432]/50 p-3"
               >
                 {/* Severity indicator */}
                 <div className="flex flex-col items-center gap-0.5 pt-0.5">

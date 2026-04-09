@@ -81,7 +81,7 @@ export default function StraitMap({ ships = [], summary }) {
   const statusColors = {
     trapped: '#ef4444', blocked: '#dc2626', waiting: '#ef4444',
     passing: '#22c55e', passed: '#06b6d4', diverted: '#f59e0b',
-    escort: '#ffffff', patrol: '#a78bfa',
+    escort: '#ffffff', patrol: '#ffffff',
   }
 
   const typeLabels = {
@@ -90,7 +90,7 @@ export default function StraitMap({ ships = [], summary }) {
   }
 
   return (
-    <div className="rounded-lg border border-[#3d3526] bg-[#241f16] p-4">
+    <div className="rounded-lg border border-[#6b5432] bg-[#3a2d1c] p-4">
       <div className="flex items-center justify-between mb-3">
         <div className="text-xs text-gray-500 uppercase tracking-wider">Strait Map</div>
         <div className="flex items-center gap-3">
@@ -99,7 +99,7 @@ export default function StraitMap({ ships = [], summary }) {
             className={`text-[10px] px-2 py-1 rounded border transition-colors ${
               showKorean
                 ? 'bg-cyan-500/20 border-cyan-500/40 text-cyan-300'
-                : 'bg-[#241f16] border-[#3d3526] text-[#8a7e6a] hover:text-[#c4b89a]'
+                : 'bg-[#3a2d1c] border-[#6b5432] text-[#8a7e6a] hover:text-[#c4b89a]'
             }`}
           >
             🇰🇷 한국선박
@@ -119,19 +119,19 @@ export default function StraitMap({ ships = [], summary }) {
         {/* Ship stats overlay */}
         {summary && (
           <div className="absolute top-2 left-2 z-20 flex flex-wrap gap-1.5 sm:gap-2 max-w-[calc(100%-80px)]">
-            <div className="bg-[#1a1610]/90 backdrop-blur border border-[#3d3526] rounded px-1.5 sm:px-2.5 py-1 sm:py-1.5 text-center">
+            <div className="bg-[#0a0704]/90 backdrop-blur border border-[#6b5432] rounded px-1.5 sm:px-2.5 py-1 sm:py-1.5 text-center">
               <div className="text-sm sm:text-lg font-black text-red-400 leading-none">{summary.trapped?.toLocaleString()}</div>
               <div className="text-[8px] sm:text-[9px] text-gray-400">고립</div>
             </div>
-            <div className="bg-[#1a1610]/90 backdrop-blur border border-[#3d3526] rounded px-1.5 sm:px-2.5 py-1 sm:py-1.5 text-center">
+            <div className="bg-[#0a0704]/90 backdrop-blur border border-[#6b5432] rounded px-1.5 sm:px-2.5 py-1 sm:py-1.5 text-center">
               <div className="text-sm sm:text-lg font-black text-cyan-400 leading-none">{summary.koreanShips}</div>
               <div className="text-[8px] sm:text-[9px] text-gray-400">한국</div>
             </div>
-            <div className="bg-[#1a1610]/90 backdrop-blur border border-[#3d3526] rounded px-1.5 sm:px-2.5 py-1 sm:py-1.5 text-center">
+            <div className="bg-[#0a0704]/90 backdrop-blur border border-[#6b5432] rounded px-1.5 sm:px-2.5 py-1 sm:py-1.5 text-center">
               <div className="text-sm sm:text-lg font-black text-green-400 leading-none">{summary.transitToday}</div>
               <div className="text-[8px] sm:text-[9px] text-gray-400">통과</div>
             </div>
-            <div className="bg-[#1a1610]/90 backdrop-blur border border-[#3d3526] rounded px-1.5 sm:px-2.5 py-1 sm:py-1.5 text-center">
+            <div className="bg-[#0a0704]/90 backdrop-blur border border-[#6b5432] rounded px-1.5 sm:px-2.5 py-1 sm:py-1.5 text-center">
               <div className="text-sm sm:text-lg font-black text-amber-400 leading-none">{summary.insuranceSurcharge}%</div>
               <div className="text-[8px] sm:text-[9px] text-gray-400">보험료↑</div>
             </div>
@@ -140,10 +140,10 @@ export default function StraitMap({ ships = [], summary }) {
 
         {/* Zoom controls */}
         <div className="absolute top-2 right-2 z-20 flex flex-col gap-1">
-          <button onClick={handleZoomIn} className="w-7 h-7 rounded bg-[#1a1610]/90 backdrop-blur border border-[#3d3526] text-gray-300 hover:text-white hover:border-cyan-500/50 flex items-center justify-center text-sm font-bold transition-colors">+</button>
-          <button onClick={handleZoomOut} className="w-7 h-7 rounded bg-[#1a1610]/90 backdrop-blur border border-[#3d3526] text-gray-300 hover:text-white hover:border-cyan-500/50 flex items-center justify-center text-sm font-bold transition-colors">−</button>
+          <button onClick={handleZoomIn} className="w-7 h-7 rounded bg-[#0a0704]/90 backdrop-blur border border-[#6b5432] text-gray-300 hover:text-white hover:border-cyan-500/50 flex items-center justify-center text-sm font-bold transition-colors">+</button>
+          <button onClick={handleZoomOut} className="w-7 h-7 rounded bg-[#0a0704]/90 backdrop-blur border border-[#6b5432] text-gray-300 hover:text-white hover:border-cyan-500/50 flex items-center justify-center text-sm font-bold transition-colors">−</button>
           {zoom > 1 && (
-            <button onClick={handleReset} className="w-7 h-7 rounded bg-[#1a1610]/90 backdrop-blur border border-[#3d3526] text-gray-400 hover:text-white hover:border-cyan-500/50 flex items-center justify-center text-[10px] transition-colors">⟲</button>
+            <button onClick={handleReset} className="w-7 h-7 rounded bg-[#0a0704]/90 backdrop-blur border border-[#6b5432] text-gray-400 hover:text-white hover:border-cyan-500/50 flex items-center justify-center text-[10px] transition-colors">⟲</button>
           )}
           {zoom > 1 && (
             <div className="text-[9px] text-center text-cyan-400 font-bold mt-0.5">{zoom.toFixed(1)}x</div>
@@ -324,7 +324,7 @@ export default function StraitMap({ ships = [], summary }) {
 
         {/* Hover tooltip */}
         {hovered && (
-          <div className="absolute top-3 right-12 z-20 bg-[#211c15]/95 backdrop-blur border border-[#3d3526] rounded-lg p-3 text-xs shadow-lg min-w-[180px]">
+          <div className="absolute top-3 right-12 z-20 bg-[#1c1509]/95 backdrop-blur border border-[#6b5432] rounded-lg p-3 text-xs shadow-lg min-w-[180px]">
             <div className="font-bold text-gray-100 mb-1">
               {hovered.flag === 'KR' && <span className="mr-1">🇰🇷</span>}
               {hovered.name}

@@ -20,7 +20,7 @@ export default function StatusPanel({ data }) {
   const progressPercent = Math.min((daysSinceStart / 180) * 100, 100)
 
   return (
-    <div className={`rounded-lg border ${config.border} bg-[#241f16] p-4 sm:p-5`}>
+    <div className={`rounded-lg border ${config.border} bg-[#3a2d1c] p-4 sm:p-5`}>
       {/* Status header - big and bold */}
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -47,7 +47,7 @@ export default function StatusPanel({ data }) {
           <span>2/28 봉쇄 시작</span>
           <span>180일 (6개월)</span>
         </div>
-        <div className="h-2 bg-[#211c15] rounded-full overflow-hidden">
+        <div className="h-2 bg-[#1c1509] rounded-full overflow-hidden">
           <div
             className="h-full rounded-full transition-all duration-1000 relative"
             style={{
@@ -66,14 +66,14 @@ export default function StatusPanel({ data }) {
       </div>
 
       {/* Severity meter - visual gauge */}
-      <div className="flex items-center gap-3 mb-4 bg-[#211c15] rounded-lg p-3">
+      <div className="flex items-center gap-3 mb-4 bg-[#1c1509] rounded-lg p-3">
         <span className="text-[10px] text-gray-500 shrink-0">위험도</span>
         <div className="flex-1 flex gap-1">
           {[1, 2, 3, 4, 5].map(i => (
             <div key={i} className="flex-1 relative">
               <div className={`h-4 rounded ${i <= data.severity ? '' : 'bg-gray-700/50'}`}
                 style={i <= data.severity ? {
-                  background: i <= 2 ? '#f59e0b' : i <= 3 ? '#f97316' : '#ef4444',
+                  background: i <= 2 ? '#f59e0b' : i <= 3 ? '#d97706' : '#ef4444',
                   boxShadow: i === data.severity ? `0 0 8px ${i <= 2 ? '#f59e0b' : '#ef4444'}40` : 'none',
                 } : {}}
               />
@@ -106,10 +106,10 @@ export default function StatusPanel({ data }) {
 
       {/* Ceasefire banner */}
       {data.ceasefire?.active && (
-        <div className="rounded-lg px-3 py-2.5 mb-4 bg-blue-500/10 border border-blue-500/20">
+        <div className="rounded-lg px-3 py-2.5 mb-4 bg-cyan-500/10 border border-cyan-500/20">
           <div className="flex items-center gap-2 mb-1">
             <span className="text-base">🕊️</span>
-            <span className="text-blue-400 font-bold text-xs">휴전 진행중</span>
+            <span className="text-cyan-400 font-bold text-xs">휴전 진행중</span>
             <span className="text-[10px] text-gray-500">{data.ceasefire.duration} ({data.ceasefire.startDate?.slice(0, 10)}~)</span>
           </div>
           <p className="text-xs text-gray-400 leading-relaxed">{data.ceasefire.note}</p>
@@ -121,7 +121,7 @@ export default function StatusPanel({ data }) {
 
       {/* Transit system */}
       {data.transitSystem && (
-        <div className="rounded-lg bg-[#211c15] border border-[#3d3526]/50 px-3 py-2.5 mb-3">
+        <div className="rounded-lg bg-[#1c1509] border border-[#6b5432]/50 px-3 py-2.5 mb-3">
           <div className="text-[10px] text-gray-500 font-bold mb-2">이란 3단계 통행 체계</div>
           <div className="space-y-1.5">
             <div className="flex items-center gap-2 text-xs">
@@ -141,7 +141,7 @@ export default function StatusPanel({ data }) {
       )}
 
       {/* Footer */}
-      <div className="flex items-center justify-between text-[10px] text-gray-500 pt-2 border-t border-[#3d3526]/30">
+      <div className="flex items-center justify-between text-[10px] text-gray-500 pt-2 border-t border-[#6b5432]/30">
         <span>{updatedAgo} 업데이트</span>
         <span>출처: {data.source}</span>
       </div>
