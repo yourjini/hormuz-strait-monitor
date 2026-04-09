@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-[#2a2d35] mt-8 py-6 px-4">
+    <footer className="border-t border-[#3d3526] mt-8 py-6 px-4">
       <div className="max-w-[1600px] mx-auto space-y-3">
         {/* Update schedule */}
         <div className="text-center text-[10px] text-gray-600">
@@ -8,7 +8,7 @@ export default function Footer() {
         </div>
 
         {/* Disclaimer */}
-        <div className="rounded-lg border border-[#2a2d35]/50 bg-[#161920]/50 px-4 py-3 max-w-3xl mx-auto">
+        <div className="rounded-lg border border-[#3d3526]/50 bg-[#211c15]/50 px-4 py-3 max-w-3xl mx-auto">
           <div className="text-[10px] text-amber-400/80 font-bold mb-1">면책 고지 (Disclaimer)</div>
           <p className="text-[10px] text-gray-500 leading-relaxed">
             본 사이트는 호르무즈 해협 관련 공개 정보를 정리·시각화한 <span className="text-gray-400">참고용 정보 서비스</span>입니다.

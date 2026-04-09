@@ -15,7 +15,7 @@ export default function IndustryImpact({ data }) {
   const industries = tab === 'domestic' ? data.domestic : data.global
 
   return (
-    <div className="rounded-lg border border-[#2a2d35] bg-[#1a1d24] p-4">
+    <div className="rounded-lg border border-[#3d3526] bg-[#241f16] p-4">
       <div className="flex items-center justify-between mb-4">
         <span className="text-xs text-gray-500 uppercase tracking-wider">피해 산업 분석</span>
         <div className="flex gap-1">
@@ -29,7 +29,7 @@ export default function IndustryImpact({ data }) {
               className={`text-xs px-3 py-1 rounded transition-colors ${
                 tab === t.key
                   ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
-                  : 'text-gray-400 border border-[#2a2d35] hover:text-gray-200'
+                  : 'text-gray-400 border border-[#3d3526] hover:text-gray-200'
               }`}
             >
               {t.label}
@@ -60,7 +60,7 @@ function IndustryCard({ industry }) {
 
   return (
     <div
-      className="rounded-lg bg-[#161920] border border-[#2a2d35]/50 p-3 cursor-pointer hover:border-cyan-500/20 transition-colors"
+      className="rounded-lg bg-[#211c15] border border-[#3d3526]/50 p-3 cursor-pointer hover:border-cyan-500/20 transition-colors"
       onClick={() => setExpanded(!expanded)}
     >
       <div className="flex items-start gap-3">
@@ -78,7 +78,7 @@ function IndustryCard({ industry }) {
           <p className="text-xs text-gray-400 leading-relaxed">{industry.description}</p>
 
           {expanded && (
-            <div className="mt-3 pt-3 border-t border-[#2a2d35]/50 space-y-2">
+            <div className="mt-3 pt-3 border-t border-[#3d3526]/50 space-y-2">
               <div className="text-xs">
                 <span className="text-gray-500">영향: </span>
                 <span className="text-gray-300">{industry.impact}</span>
@@ -86,7 +86,7 @@ function IndustryCard({ industry }) {
               {industry.companies?.length > 0 && (
                 <div className="flex flex-wrap gap-1">
                   {industry.companies.map(c => (
-                    <span key={c} className="text-[10px] px-1.5 py-0.5 rounded bg-[#1a1d24] text-gray-400 border border-[#2a2d35]/30">
+                    <span key={c} className="text-[10px] px-1.5 py-0.5 rounded bg-[#241f16] text-gray-400 border border-[#3d3526]/30">
                       {c}
                     </span>
                   ))}
@@ -95,7 +95,7 @@ function IndustryCard({ industry }) {
               {industry.regions?.length > 0 && (
                 <div className="flex flex-wrap gap-1">
                   {industry.regions.map(r => (
-                    <span key={r} className="text-[10px] px-1.5 py-0.5 rounded bg-[#1a1d24] text-gray-400 border border-[#2a2d35]/30">
+                    <span key={r} className="text-[10px] px-1.5 py-0.5 rounded bg-[#241f16] text-gray-400 border border-[#3d3526]/30">
                       {r}
                     </span>
                   ))}

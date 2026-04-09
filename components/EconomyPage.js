@@ -39,7 +39,7 @@ export default function EconomyPage({ initialData }) {
   const { economy, industries, domino } = data
 
   return (
-    <div className="min-h-screen bg-[#111318]">
+    <div className="min-h-screen bg-[#1a1610]">
       <Header />
 
       <main className="max-w-[1600px] mx-auto p-4 space-y-4">

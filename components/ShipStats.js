@@ -62,7 +62,7 @@ export default function ShipStats({ data }) {
   return (
     <div className="grid grid-cols-2 gap-3">
       {cards.map((card) => (
-        <div key={card.label} className="rounded-lg border border-[#2a2d35] bg-[#1a1d24] p-4">
+        <div key={card.label} className="rounded-lg border border-[#3d3526] bg-[#241f16] p-4">
           <div className="flex items-center gap-2 mb-2">
             <div className={`${card.bg} ${card.color} p-1.5 rounded`}>{card.icon}</div>
             <span className="text-xs text-gray-400">{card.label}</span>

@@ -11,7 +11,7 @@ export default function NewsFeed({ data = [] }) {
   }
 
   return (
-    <div className="rounded-lg border border-[#2a2d35] bg-[#1a1d24] p-4 h-full flex flex-col">
+    <div className="rounded-lg border border-[#3d3526] bg-[#241f16] p-4 h-full flex flex-col">
       <div className="flex items-center justify-between mb-3">
         <div className="text-xs text-gray-500 uppercase tracking-wider">Related News</div>
         <div className="text-[10px] text-gray-500">{data.length}건</div>
@@ -27,7 +27,7 @@ export default function NewsFeed({ data = [] }) {
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-lg border border-[#2a2d35]/50 bg-[#161920] p-3 hover:border-cyan-500/30 transition-colors group"
+              className="block rounded-lg border border-[#3d3526]/50 bg-[#211c15] p-3 hover:border-cyan-500/30 transition-colors group"
             >
               <div className="flex items-center gap-2 mb-1.5">
                 <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${cat.color}`}>

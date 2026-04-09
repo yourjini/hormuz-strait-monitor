@@ -14,7 +14,7 @@ export default function EconomyCharts({ data }) {
       {/* Top indicator cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {indicators.map(({ key, data: ind, color, bgColor }) => (
-          <div key={key} className="rounded-lg border border-[#2a2d35] bg-[#1a1d24] p-4">
+          <div key={key} className="rounded-lg border border-[#3d3526] bg-[#241f16] p-4">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs text-gray-500">{ind.name}</span>
               <span className="text-[10px] px-1.5 py-0.5 rounded font-bold"
@@ -41,7 +41,7 @@ export default function EconomyCharts({ data }) {
       </div>
 
       {/* Consumer prices */}
-      <div className="rounded-lg border border-[#2a2d35] bg-[#1a1d24] p-4">
+      <div className="rounded-lg border border-[#3d3526] bg-[#241f16] p-4">
         <div className="flex items-center justify-between mb-3">
           <div>
             <span className="text-xs text-gray-500 uppercase tracking-wider">국내 물가 영향</span>
@@ -54,7 +54,7 @@ export default function EconomyCharts({ data }) {
         </div>
         <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 sm:gap-3">
           {data.consumerPrice.items.map((item) => (
-            <div key={item.name} className="rounded bg-[#161920] border border-[#2a2d35]/50 p-3 text-center">
+            <div key={item.name} className="rounded bg-[#211c15] border border-[#3d3526]/50 p-3 text-center">
               <div className="text-xs text-gray-400 mb-1">{item.name}</div>
               {item.price && (
                 <div className="text-sm font-bold text-gray-200">

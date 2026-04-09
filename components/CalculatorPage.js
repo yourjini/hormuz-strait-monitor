@@ -76,7 +76,7 @@ export default function CalculatorPage({ initialData }) {
   }
 
   return (
-    <div className="min-h-screen bg-[#111318]">
+    <div className="min-h-screen bg-[#1a1610]">
       <Header />
 
       <main className="max-w-3xl mx-auto p-4">
@@ -248,7 +248,7 @@ function ShockGauge({ percent }) {
         <span className="text-gray-400">가계 충격도</span>
         <span className={percent > 30 ? 'text-red-400 font-bold' : percent > 15 ? 'text-amber-400 font-bold' : 'text-cyan-400'}>{label} ({percent.toFixed(1)}%)</span>
       </div>
-      <div className="h-3 bg-[#161920] rounded-full overflow-hidden">
+      <div className="h-3 bg-[#211c15] rounded-full overflow-hidden">
         <div
           className={`h-full rounded-full transition-all duration-1000 ease-out ${color}`}
           style={{ width: `${width}%` }}
@@ -272,7 +272,7 @@ function InputForm({ data, inputs, onChange, onToggleGrocery, onCalculate }) {
               className={`py-2 px-3 rounded-lg text-sm font-medium border transition-all ${
                 inputs.fuelType === type
                   ? 'bg-cyan-500/15 text-cyan-300 border-cyan-500/40'
-                  : 'bg-[#161920] text-gray-400 border-[#2a2d35] hover:text-gray-200'
+                  : 'bg-[#211c15] text-gray-400 border-[#3d3526] hover:text-gray-200'
               }`}
             >
               {data.prices[type].icon} {data.prices[type].name}
@@ -323,7 +323,7 @@ function InputForm({ data, inputs, onChange, onToggleGrocery, onCalculate }) {
                 className={`flex items-center gap-2 p-2 rounded-lg text-left text-xs border transition-all ${
                   selected
                     ? 'bg-amber-500/10 border-amber-500/30 text-gray-200'
-                    : 'bg-[#161920] border-[#2a2d35] text-gray-400 hover:text-gray-300'
+                    : 'bg-[#211c15] border-[#3d3526] text-gray-400 hover:text-gray-300'
                 }`}
               >
                 <span className="text-base">{item.icon}</span>
@@ -355,7 +355,7 @@ function InputForm({ data, inputs, onChange, onToggleGrocery, onCalculate }) {
               className={`flex-1 py-2 rounded-lg text-sm border transition-all ${
                 inputs.household === n
                   ? 'bg-cyan-500/15 text-cyan-300 border-cyan-500/40'
-                  : 'bg-[#161920] text-gray-400 border-[#2a2d35]'
+                  : 'bg-[#211c15] text-gray-400 border-[#3d3526]'
               }`}
             >
               {n}인
@@ -385,7 +385,7 @@ function ResultPanel({ result, inputs, data, onBack }) {
       {result.totalDiff > 50000 && <MoneyRain />}
 
       {/* 총 추가 비용 (메인 결과) */}
-      <div className="relative z-10 rounded-xl border-2 border-red-500/30 bg-gradient-to-br from-[#1a1d24] to-[#1a1a2e] p-6 text-center overflow-hidden">
+      <div className="relative z-10 rounded-xl border-2 border-red-500/30 bg-gradient-to-br from-[#241f16] to-[#1a1a2e] p-6 text-center overflow-hidden">
         {/* Background pulse */}
         <div className="absolute inset-0 bg-red-500/5 animate-pulse rounded-xl" />
 
@@ -444,7 +444,7 @@ function ResultPanel({ result, inputs, data, onBack }) {
 
       {/* 장바구니 상세 */}
       {result.grocery.details.length > 0 && (
-        <div className="relative z-10 rounded-lg border border-[#2a2d35] bg-[#1a1d24] p-4">
+        <div className="relative z-10 rounded-lg border border-[#3d3526] bg-[#241f16] p-4">
           <div className="text-xs text-gray-500 mb-2">장바구니 품목별</div>
           <div className="space-y-1.5">
             {result.grocery.details.map(item => (
@@ -508,7 +508,7 @@ function ResultCard({ icon, title, diff, detail, delay }) {
   }, [delay])
 
   return (
-    <div className={`rounded-lg border border-[#2a2d35] bg-[#1a1d24] p-4 transition-all duration-500 ${
+    <div className={`rounded-lg border border-[#3d3526] bg-[#241f16] p-4 transition-all duration-500 ${
       visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
     }`}>
       <div className="flex items-center gap-2 mb-2">
@@ -537,7 +537,7 @@ function SliderInput({ label, value, min, max, step, unit, onChange, className =
         min={min} max={max} step={step}
         value={value}
         onChange={e => onChange(Number(e.target.value))}
-        className="w-full h-1.5 bg-[#2a2d35] rounded-full appearance-none cursor-pointer accent-cyan-500
+        className="w-full h-1.5 bg-[#3d3526] rounded-full appearance-none cursor-pointer accent-cyan-500
           [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4
           [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyan-400 [&::-webkit-slider-thumb]:shadow-lg
           [&::-webkit-slider-thumb]:shadow-cyan-500/30"
@@ -613,7 +613,7 @@ function ShareButtons({ result, onBack }) {
         </button>
         <button
           onClick={copyToClipboard}
-          className="flex flex-col items-center gap-1.5 py-3 rounded-lg bg-[#2a2d35] hover:bg-[#345580] transition-colors active:scale-[0.97]"
+          className="flex flex-col items-center gap-1.5 py-3 rounded-lg bg-[#3d3526] hover:bg-[#345580] transition-colors active:scale-[0.97]"
         >
           <svg viewBox="0 0 24 24" className="w-6 h-6" fill="none" stroke="#e2e8f0" strokeWidth="2">
             <rect x="9" y="9" width="13" height="13" rx="2" />
@@ -626,7 +626,7 @@ function ShareButtons({ result, onBack }) {
       {/* Back button */}
       <button
         onClick={onBack}
-        className="w-full py-3 rounded-lg border border-[#2a2d35] text-gray-400 hover:text-gray-200 transition-colors text-sm"
+        className="w-full py-3 rounded-lg border border-[#3d3526] text-gray-400 hover:text-gray-200 transition-colors text-sm"
       >
         ← 다시 입력하기
       </button>
@@ -637,7 +637,7 @@ function ShareButtons({ result, onBack }) {
 /* ── Section wrapper ── */
 function Section({ title, desc, children }) {
   return (
-    <div className="rounded-xl border border-[#2a2d35] bg-[#1a1d24] p-4">
+    <div className="rounded-xl border border-[#3d3526] bg-[#241f16] p-4">
       <div className="mb-3">
         <h3 className="text-sm font-bold text-gray-200">{title}</h3>
         {desc && <p className="text-[10px] text-gray-500">{desc}</p>}
