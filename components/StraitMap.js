@@ -21,6 +21,8 @@ export default function StraitMap({ ships = [] }) {
   }
 
   const statusColors = {
+    trapped: '#ef4444',
+    blocked: '#dc2626',
     waiting: '#ef4444',
     passing: '#22c55e',
     passed: '#06b6d4',
@@ -42,7 +44,7 @@ export default function StraitMap({ ships = [] }) {
       <div className="flex items-center justify-between mb-3">
         <div className="text-xs text-gray-500 uppercase tracking-wider">Strait Map</div>
         <div className="flex gap-3 text-[10px]">
-          {Object.entries({ waiting: '대기', passing: '통과중', diverted: '우회', escort: '호위', patrol: '순찰' }).map(([key, label]) => (
+          {Object.entries({ trapped: '고립', passing: '통과중', diverted: '우회', blocked: '봉쇄', escort: '호위', patrol: '순찰' }).map(([key, label]) => (
             <div key={key} className="flex items-center gap-1">
               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: statusColors[key] }} />
               <span className="text-gray-400">{label}</span>

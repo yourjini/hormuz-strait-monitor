@@ -51,10 +51,19 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* Live indicator */}
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          <span className="text-xs text-green-400 font-medium">LIVE</span>
+        {/* Status + update schedule */}
+        <div className="flex items-center gap-4">
+          <div className="hidden md:block text-right">
+            <div className="flex items-center gap-3 text-[10px] text-gray-500">
+              <span>유가·환율 <span className="text-cyan-400">1h</span></span>
+              <span>뉴스 <span className="text-cyan-400">3h</span></span>
+              <span>봉쇄현황 <span className="text-cyan-400">6h</span></span>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+            <span className="text-xs text-green-400 font-medium">LIVE</span>
+          </div>
         </div>
       </div>
     </header>

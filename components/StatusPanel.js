@@ -59,8 +59,29 @@ export default function StatusPanel({ data }) {
         </div>
       </div>
 
+      {/* Ceasefire banner */}
+      {data.ceasefire?.active && (
+        <div className="rounded px-3 py-2 mb-4 bg-blue-500/10 border border-blue-500/20 text-xs">
+          <div className="flex items-center gap-1.5 mb-1">
+            <span className="text-blue-400 font-bold">🕊️ 휴전</span>
+            <span className="text-gray-400">{data.ceasefire.duration} ({data.ceasefire.startDate?.slice(0, 10)}~)</span>
+          </div>
+          <p className="text-gray-400 leading-relaxed">{data.ceasefire.note}</p>
+        </div>
+      )}
+
       {/* Description */}
       <p className="text-sm text-gray-300 leading-relaxed mb-3">{data.description}</p>
+
+      {/* Transit system */}
+      {data.transitSystem && (
+        <div className="rounded bg-[#142840] px-3 py-2 mb-3 space-y-1">
+          <div className="text-[10px] text-gray-500 mb-1">이란 3단계 통행 체계</div>
+          <div className="text-xs text-green-400">✅ {data.transitSystem.tier1}</div>
+          <div className="text-xs text-amber-400">💰 {data.transitSystem.tier2}</div>
+          <div className="text-xs text-red-400">🚫 {data.transitSystem.tier3}</div>
+        </div>
+      )}
 
       {/* Footer */}
       <div className="flex items-center justify-between text-xs text-gray-500">
