@@ -83,7 +83,7 @@ export default function CalculatorPage({ initialData }) {
         <div className="text-center mb-8 pt-4">
           <div className="inline-block relative">
             <FlameAnimation />
-            <h1 className="text-2xl font-bold text-gray-100 mt-2">내 생활 영향 계산기</h1>
+            <h1 className="text-2xl font-bold text-gray-100 mt-2">내 지갑 계산기</h1>
           </div>
           <p className="text-sm text-gray-400 mt-2">호르무즈 해협 봉쇄가 내 지갑에 미치는 영향은?</p>
           <div className="flex items-center justify-center gap-4 mt-3 text-xs text-gray-500">
@@ -367,7 +367,7 @@ function InputForm({ data, inputs, onChange, onToggleGrocery, onCalculate }) {
         onClick={onCalculate}
         className="w-full py-4 rounded-xl bg-gradient-to-r from-amber-500 to-red-500 text-white font-bold text-lg hover:from-amber-400 hover:to-red-400 transition-all active:scale-[0.98] shadow-lg shadow-amber-500/20"
       >
-        내 영향 계산하기 🔥
+        내 지갑 계산하기 🔥
       </button>
     </div>
   )
@@ -474,7 +474,7 @@ function ResultPanel({ result, inputs, data, onBack }) {
           onClick={() => {
             const text = `호르무즈 해협 봉쇄로 우리집 월 +${result.totalDiff.toLocaleString()}원 추가 지출 예상 😱 연간 ${result.yearlyDiff.toLocaleString()}원! 당신은 얼마? 👉`
             if (navigator.share) {
-              navigator.share({ title: '내 생활 영향 계산기', text })
+              navigator.share({ title: '내 지갑 계산기', text })
             } else {
               navigator.clipboard.writeText(text)
               alert('클립보드에 복사되었습니다!')
