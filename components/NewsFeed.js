@@ -1,25 +1,26 @@
 'use client'
 
+const categoryConfig = {
+  geopolitics: { label: 'Geopolitical', color: 'bg-primary/90 text-on-primary', icon: 'public' },
+  oil_market: { label: 'Oil Market', color: 'bg-tertiary-container text-on-tertiary-container', icon: 'query_stats' },
+  military: { label: 'Military', color: 'bg-error-container text-on-error-container', icon: 'security' },
+  shipping: { label: 'Logistics', color: 'bg-secondary-container text-on-secondary-container', icon: 'anchor' },
+  diplomacy: { label: 'Diplomacy', color: 'bg-blue-500/80 text-white', icon: 'handshake' },
+  domestic: { label: 'Domestic', color: 'bg-green-500/80 text-white', icon: 'home' },
+}
+
 export default function NewsFeed({ data = [] }) {
-  const categoryConfig = {
-    geopolitics: { label: '지정학', color: 'text-red-400 bg-red-500/10' },
-    oil_market: { label: '유가', color: 'text-amber-400 bg-amber-500/10' },
-    military: { label: '군사', color: 'text-purple-400 bg-purple-500/10' },
-    shipping: { label: '해운', color: 'text-cyan-400 bg-cyan-500/10' },
-    diplomacy: { label: '외교', color: 'text-blue-400 bg-blue-500/10' },
-    domestic: { label: '국내', color: 'text-green-400 bg-green-500/10' },
-  }
+  const sorted = [...data].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
 
   return (
-    <div className="rounded-lg border border-[#2a4a6f] bg-[#182f4a] p-4 h-full flex flex-col">
-      <div className="flex items-center justify-between mb-3">
-        <div className="text-xs text-gray-500 uppercase tracking-wider">Related News</div>
-        <div className="text-[10px] text-gray-500">{data.length}건</div>
+    <section className="space-y-5">
+      <div className="flex items-center justify-between">
+        <h2 className="font-headline font-bold text-xl tracking-tight text-white">Related Intelligence</h2>
+        <span className="text-xs text-primary hover:underline cursor-pointer">{data.length}건</span>
       </div>
-      <div className="flex-1 overflow-y-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pr-1">
-        {[...data].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)).map((article) => {
-          const cat = categoryConfig[article.category] || { label: article.category, color: 'text-gray-400 bg-gray-500/10' }
-          const isRecent = (Date.now() - new Date(article.publishedAt).getTime()) < 3 * 60 * 60 * 1000
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {sorted.map(article => {
+          const cat = categoryConfig[article.category] || { label: article.category, color: 'bg-surface-variant text-slate-400', icon: 'article' }
 
           return (
             <a
@@ -27,52 +28,48 @@ export default function NewsFeed({ data = [] }) {
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-lg border border-[#2a4a6f]/50 bg-[#142840] p-3 hover:border-cyan-500/30 transition-colors group"
+              className="group bg-surface-container-high rounded-xl overflow-hidden border border-white/5 hover:border-primary/20 transition-all cursor-pointer"
             >
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${cat.color}`}>
-                  {cat.label}
-                </span>
-                {isRecent && (
-                  <span className="text-[10px] px-1.5 py-0.5 rounded font-bold text-red-400 bg-red-500/10 animate-pulse">
-                    LIVE
+              {/* Category color bar */}
+              <div className="h-1 w-full" style={{ background: article.category === 'oil_market' ? '#ffb147' : article.category === 'geopolitics' ? '#8aebff' : article.category === 'military' ? '#ef4444' : '#a9c9f4' }} />
+
+              <div className="p-5 space-y-3">
+                <div className="flex items-center gap-2">
+                  <span className={`text-[9px] font-bold px-2 py-0.5 rounded uppercase tracking-widest ${cat.color}`}>
+                    {cat.label}
                   </span>
-                )}
-                <span className="text-[10px] text-gray-500 ml-auto">{formatNewsTime(article.publishedAt)}</span>
+                </div>
+                <h3 className="font-headline font-bold text-on-surface text-base leading-tight group-hover:text-primary transition-colors line-clamp-2">
+                  {article.headline}
+                </h3>
+                <p className="text-[11px] text-on-surface-variant leading-relaxed line-clamp-2">
+                  {article.summary}
+                </p>
+                <div className="flex items-center justify-between text-[10px] text-slate-500 font-medium pt-1">
+                  <span className="flex items-center gap-1">
+                    <span className="material-symbols-outlined" style={{ fontSize: '12px' }}>{cat.icon}</span>
+                    {article.source}
+                  </span>
+                  <span>{formatNewsTime(article.publishedAt)}</span>
+                </div>
               </div>
-              <div className="text-sm font-medium text-gray-200 group-hover:text-cyan-300 transition-colors mb-1 leading-snug">
-                {article.headline}
-              </div>
-              <div className="text-xs text-gray-400 leading-relaxed line-clamp-2">
-                {article.summary}
-              </div>
-              <div className="text-[10px] text-gray-500 mt-1.5">{article.source}</div>
             </a>
           )
         })}
       </div>
-    </div>
+    </section>
   )
 }
 
 function formatNewsTime(dateStr) {
   const d = new Date(dateStr)
   const diff = Date.now() - d.getTime()
-
-  if (diff < 0) {
-    // 미래 날짜인 경우 절대 시간 표시
-    return formatAbsolute(d)
-  }
-
+  if (diff < 0) return formatAbsolute(d)
   const mins = Math.floor(diff / 60000)
   if (mins < 60) return `${mins}분 전`
   const hours = Math.floor(mins / 60)
-  const remainMins = mins % 60
-  if (hours < 24) {
-    return remainMins > 0 ? `${hours}시간 ${remainMins}분 전` : `${hours}시간 전`
-  }
-  const days = Math.floor(hours / 24)
-  return `${days}일 전`
+  if (hours < 24) return `${hours}시간 전`
+  return `${Math.floor(hours / 24)}일 전`
 }
 
 function formatAbsolute(d) {
