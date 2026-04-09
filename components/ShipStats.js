@@ -45,9 +45,9 @@ export default function ShipStats({ data }) {
       bg: 'bg-green-500/10',
     },
     {
-      label: '보험료 인상',
+      label: '전쟁위험 할증료',
       value: s.insuranceSurcharge,
-      detail: `평균 대기 ${s.avgWaitDays}일`,
+      detail: `War Risk Premium · 평균 대기 ${s.avgWaitDays}일`,
       unit: '%',
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>

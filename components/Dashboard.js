@@ -8,6 +8,7 @@ import Timeline from './Timeline'
 import NewsFeed from './NewsFeed'
 import Header from './Header'
 import Footer from './Footer'
+import { DashboardBanner } from './FactLensBanner'
 
 export default function Dashboard({ initialData }) {
   const [data, setData] = useState(initialData)
@@ -62,6 +63,9 @@ export default function Dashboard({ initialData }) {
 
         {/* Row 2: Timeline */}
         <Timeline data={timeline} />
+
+        {/* FactLens 배너 — 뉴스 섹션 위 */}
+        <DashboardBanner />
 
         {/* Row 3: News (전체 너비) */}
         <NewsFeed data={news} />

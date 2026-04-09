@@ -6,6 +6,7 @@ import Footer from './Footer'
 import EconomyCharts from './EconomyCharts'
 import IndustryImpact from './IndustryImpact'
 import DominoTimeline from './DominoTimeline'
+import { EconomyBanner } from './FactLensBanner'
 
 export default function EconomyPage({ initialData }) {
   const [data, setData] = useState(initialData)
@@ -47,9 +48,10 @@ export default function EconomyPage({ initialData }) {
         <EconomyCharts data={economy} />
 
         {/* Two column: Industry + Domino */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <IndustryImpact data={industries} />
           <DominoTimeline data={domino} />
+          <EconomyBanner />
         </div>
       </main>
 

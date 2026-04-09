@@ -4,6 +4,7 @@ import { useState, useRef, useCallback } from 'react'
 
 export default function StraitMap({ ships = [], summary }) {
   const [hovered, setHovered] = useState(null)
+  const [showKorean, setShowKorean] = useState(false)
   const [zoom, setZoom] = useState(1)
   const [pan, setPan] = useState({ x: 0, y: 0 })
   const [dragging, setDragging] = useState(false)
@@ -92,6 +93,18 @@ export default function StraitMap({ ships = [], summary }) {
     <div className="rounded-lg border border-[#3d3526] bg-[#241f16] p-4">
       <div className="flex items-center justify-between mb-3">
         <div className="text-xs text-gray-500 uppercase tracking-wider">Strait Map</div>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowKorean(!showKorean)}
+            className={`text-[10px] px-2 py-1 rounded border transition-colors ${
+              showKorean
+                ? 'bg-cyan-500/20 border-cyan-500/40 text-cyan-300'
+                : 'bg-[#241f16] border-[#3d3526] text-[#8a7e6a] hover:text-[#c4b89a]'
+            }`}
+          >
+            🇰🇷 한국선박
+          </button>
+        </div>
         <div className="flex flex-wrap justify-end gap-x-2 gap-y-1 text-[9px] sm:text-[10px]">
           {Object.entries({ trapped: '고립', passing: '통과중', diverted: '우회', blocked: '봉쇄', escort: '호위', patrol: '순찰' }).map(([key, label]) => (
             <div key={key} className="flex items-center gap-1">
@@ -272,16 +285,31 @@ export default function StraitMap({ ships = [], summary }) {
               const pos = getShipPos(ship, idx)
               const color = statusColors[ship.status] || '#666'
               const isNaval = ship.type === 'naval'
-              const r = isNaval ? 5 : 4
+              const isKorean = ship.flag === 'KR'
+              const r = isNaval ? 5 : isKorean && showKorean ? 5 : 4
+
+              // 한국선박 필터 모드일 때 비한국 선박은 투명하게
+              const opacity = showKorean && !isKorean ? 0.15 : 1
 
               return (
                 <g key={ship.id}
                   onMouseEnter={() => setHovered(ship)}
                   onMouseLeave={() => setHovered(null)}
-                  style={{ cursor: 'pointer' }}
+                  onClick={() => isKorean && setHovered(ship)}
+                  style={{ cursor: 'pointer', opacity }}
                 >
+                  {/* 한국 선박 강조 링 */}
+                  {isKorean && showKorean && (
+                    <>
+                      <circle cx={pos.x} cy={pos.y} r={r + 8} fill="none" stroke="#06b6d4" strokeWidth="1" opacity="0.4">
+                        <animate attributeName="r" from={r + 4} to={r + 12} dur="2s" repeatCount="indefinite" />
+                        <animate attributeName="opacity" from="0.5" to="0" dur="2s" repeatCount="indefinite" />
+                      </circle>
+                      <circle cx={pos.x} cy={pos.y} r={r + 4} fill="none" stroke="#06b6d4" strokeWidth="1.5" strokeDasharray="2 2" />
+                    </>
+                  )}
                   <circle cx={pos.x} cy={pos.y} r={r + 3} fill={color} opacity="0.2" />
-                  <circle cx={pos.x} cy={pos.y} r={r} fill={color} stroke={isNaval ? '#fff' : 'none'} strokeWidth={isNaval ? 1 : 0} />
+                  <circle cx={pos.x} cy={pos.y} r={r} fill={color} stroke={isNaval ? '#fff' : isKorean && showKorean ? '#06b6d4' : 'none'} strokeWidth={isNaval || (isKorean && showKorean) ? 1.5 : 0} />
                   {ship.status === 'passing' && (
                     <circle cx={pos.x} cy={pos.y} r={r + 6} fill="none" stroke={color} strokeWidth="0.5" opacity="0.5">
                       <animate attributeName="r" from={r + 2} to={r + 10} dur="2s" repeatCount="indefinite" />
@@ -297,10 +325,13 @@ export default function StraitMap({ ships = [], summary }) {
         {/* Hover tooltip */}
         {hovered && (
           <div className="absolute top-3 right-12 z-20 bg-[#211c15]/95 backdrop-blur border border-[#3d3526] rounded-lg p-3 text-xs shadow-lg min-w-[180px]">
-            <div className="font-bold text-gray-100 mb-1">{hovered.name}</div>
+            <div className="font-bold text-gray-100 mb-1">
+              {hovered.flag === 'KR' && <span className="mr-1">🇰🇷</span>}
+              {hovered.name}
+            </div>
             <div className="space-y-0.5 text-gray-400">
               <div>유형: <span className="text-gray-200">{typeLabels[hovered.type] || hovered.type}</span></div>
-              <div>국적: <span className="text-gray-200">{hovered.flag}</span></div>
+              <div>국적: <span className="text-gray-200">{hovered.flag === 'KR' ? '대한민국' : hovered.flag}</span></div>
               <div>상태: <span style={{ color: statusColors[hovered.status] }}>{hovered.status.toUpperCase()}</span></div>
               {hovered.dwt && <div>DWT: <span className="text-gray-200">{(hovered.dwt / 1000).toFixed(0)}K</span></div>}
               {hovered.waitingSince && (

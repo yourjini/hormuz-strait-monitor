@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import Header from './Header'
 import Footer from './Footer'
+import { CalculatorBanner } from './FactLensBanner'
 
 export default function CalculatorPage({ initialData }) {
   const [data] = useState(initialData)
@@ -110,6 +111,11 @@ export default function CalculatorPage({ initialData }) {
             onBack={() => setStep(1)}
           />
         )}
+
+        {/* FactLens 배너 */}
+        <div className="mt-6">
+          <CalculatorBanner />
+        </div>
       </main>
       <Footer />
     </div>
