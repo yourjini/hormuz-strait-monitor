@@ -1,0 +1,110 @@
+[
+  {
+    "id": "n1",
+    "headline": "이란, 추가 제재 시 해협 완전 봉쇄 경고",
+    "summary": "IRGC 사령관이 미국의 신규 제재 패키지에 대응해 호르무즈 해협 완전 봉쇄 권리를 주장했다.",
+    "source": "Reuters",
+    "url": "#",
+    "publishedAt": "2026-04-09T05:15:00Z",
+    "category": "geopolitics"
+  },
+  {
+    "id": "n2",
+    "headline": "유가 배럴당 $120 돌파, 3년 만의 최고치",
+    "summary": "호르무즈 해협 봉쇄 우려에 브렌트유 $120.47 기록. 전일 대비 8.3% 급등.",
+    "source": "Bloomberg",
+    "url": "#",
+    "publishedAt": "2026-04-09T04:30:00Z",
+    "category": "oil_market"
+  },
+  {
+    "id": "n3",
+    "headline": "미 제5함대, 페르시아만 병력 증강",
+    "summary": "에이브러햄 링컨 항공모함 전단이 오만만에 도착. 호위 임무 강화 예정.",
+    "source": "AP",
+    "url": "#",
+    "publishedAt": "2026-04-09T03:00:00Z",
+    "category": "military"
+  },
+  {
+    "id": "n4",
+    "headline": "글로벌 해운사들 케이프 루트 우회 검토",
+    "summary": "머스크, MSC 등 주요 해운사들이 아프리카 희망봉 우회 노선 전환을 검토 중.",
+    "source": "Lloyd's List",
+    "url": "#",
+    "publishedAt": "2026-04-09T02:00:00Z",
+    "category": "shipping"
+  },
+  {
+    "id": "n5",
+    "headline": "한국, 호르무즈 해협 통과 유조선 안전 우려 고조",
+    "summary": "한국 원유 수입의 70%가 호르무즈 해협을 통과. 정부 비상대책회의 소집.",
+    "source": "연합뉴스",
+    "url": "#",
+    "publishedAt": "2026-04-08T23:00:00Z",
+    "category": "domestic"
+  },
+  {
+    "id": "n6",
+    "headline": "UN 안보리, 호르무즈 긴급 회의 소집",
+    "summary": "미국·영국이 요청한 긴급 안보리 회의에서 이란에 항행 자유 보장을 촉구.",
+    "source": "Al Jazeera",
+    "url": "#",
+    "publishedAt": "2026-04-08T20:00:00Z",
+    "category": "diplomacy"
+  },
+  {
+    "id": "n7",
+    "headline": "이스라엘, 이란 핵시설 타격 가능성 시사",
+    "summary": "이스라엘 국방장관이 '모든 옵션이 테이블 위에 있다'고 발언. 긴장 고조.",
+    "source": "Haaretz",
+    "url": "#",
+    "publishedAt": "2026-04-08T18:00:00Z",
+    "category": "geopolitics"
+  },
+  {
+    "id": "n8",
+    "headline": "사우디·UAE, 해상 보안 강화 합의",
+    "summary": "걸프 협력회의(GCC) 긴급 회의에서 공동 해상 순찰 강화를 결의.",
+    "source": "Arab News",
+    "url": "#",
+    "publishedAt": "2026-04-08T15:00:00Z",
+    "category": "military"
+  },
+  {
+    "id": "n9",
+    "headline": "보험료 폭등, 페르시아만 항해 위험 등급 상향",
+    "summary": "런던 해상보험 시장이 페르시아만을 고위험 지역으로 재분류. 보험료 300% 인상.",
+    "source": "Financial Times",
+    "url": "#",
+    "publishedAt": "2026-04-08T12:00:00Z",
+    "category": "shipping"
+  },
+  {
+    "id": "n10",
+    "headline": "중국, 이란산 원유 수입 대체 경로 모색",
+    "summary": "중국 CNPC가 파키스탄 과다르항 경유 파이프라인 대안을 긴급 검토 중.",
+    "source": "SCMP",
+    "url": "#",
+    "publishedAt": "2026-04-08T09:00:00Z",
+    "category": "oil_market"
+  },
+  {
+    "id": "n11",
+    "headline": "이란-미국 비밀 외교 채널 가동 소식",
+    "summary": "오만 중재로 이란-미국 간 비공식 협상이 진행 중이라는 보도. 양측 공식 부인.",
+    "source": "Reuters",
+    "url": "#",
+    "publishedAt": "2026-04-08T06:00:00Z",
+    "category": "diplomacy"
+  },
+  {
+    "id": "n12",
+    "headline": "일일 원유 수송량 2,100만 배럴 → 800만 배럴로 급감",
+    "summary": "호르무즈 해협 봉쇄 이후 일일 원유 수송량이 60% 이상 감소한 것으로 추정.",
+    "source": "IEA",
+    "url": "#",
+    "publishedAt": "2026-04-07T22:00:00Z",
+    "category": "oil_market"
+  }
+]

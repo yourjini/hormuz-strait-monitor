@@ -1,0 +1,66 @@
+[
+  {
+    "id": "t1",
+    "timestamp": "2026-04-09T06:30:00Z",
+    "status": "partially_blocked",
+    "title": "동향 항로 봉쇄 유지, 서향 호위 통과 재개",
+    "description": "IRGC 쾌속정 3척이 동향 항로에 배치. 영국 해군 호위 하에 서향 2척 통과.",
+    "source": "Reuters"
+  },
+  {
+    "id": "t2",
+    "timestamp": "2026-04-08T22:00:00Z",
+    "status": "blocked",
+    "title": "양방향 전면 봉쇄 (6시간)",
+    "description": "이란 해군 훈련 명목으로 양방향 통행 전면 차단. 미 제5함대 경계 태세 격상.",
+    "source": "AP"
+  },
+  {
+    "id": "t3",
+    "timestamp": "2026-04-08T14:00:00Z",
+    "status": "partially_blocked",
+    "title": "동향 항로 봉쇄 시작",
+    "description": "IRGC 쾌속정이 유조선 3척을 가로막음. 서향 항로는 통과 허용 중.",
+    "source": "Al Jazeera"
+  },
+  {
+    "id": "t4",
+    "timestamp": "2026-04-07T20:00:00Z",
+    "status": "partially_blocked",
+    "title": "이란, 선박 검문 강화",
+    "description": "이란 해군이 해협 통과 선박에 대한 무작위 검문을 시작. 2척 억류 후 석방.",
+    "source": "Bloomberg"
+  },
+  {
+    "id": "t5",
+    "timestamp": "2026-04-07T08:00:00Z",
+    "status": "open",
+    "title": "통행 정상화 (일시적)",
+    "description": "외교 협상 이후 12시간 동안 정상 통행. 유조선 8척 통과.",
+    "source": "Reuters"
+  },
+  {
+    "id": "t6",
+    "timestamp": "2026-04-06T16:00:00Z",
+    "status": "partially_blocked",
+    "title": "이란 경고 사격 발생",
+    "description": "리베리아 국적 유조선에 경고 사격. 미국 '심각한 도발' 비난 성명.",
+    "source": "CNN"
+  },
+  {
+    "id": "t7",
+    "timestamp": "2026-04-06T04:00:00Z",
+    "status": "partially_blocked",
+    "title": "IRGC 해군 대규모 전개",
+    "description": "쾌속정 12척, 미사일함 2척이 해협 인근에 전개. 미 항공모함 전단 대응 배치.",
+    "source": "IRNA"
+  },
+  {
+    "id": "t8",
+    "timestamp": "2026-04-05T12:00:00Z",
+    "status": "open",
+    "title": "이란, 해협 봉쇄 가능성 경고",
+    "description": "이란 외무부, 추가 제재 시 해협 봉쇄를 검토하겠다고 공식 경고.",
+    "source": "IRNA"
+  }
+]

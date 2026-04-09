@@ -1,0 +1,12 @@
+{
+  "status": "partially_blocked",
+  "severity": 4,
+  "description": "이란 IRGC 해군이 동향 항로를 부분 봉쇄 중. 서향 항로는 호위 하에 제한적 통과 허용.",
+  "descriptionEn": "IRGC naval forces partially blocking eastbound traffic. Westbound lane open under military escort.",
+  "updatedAt": "2026-04-09T06:30:00Z",
+  "source": "CENTCOM Situation Report",
+  "blockadeStarted": "2026-04-05T00:00:00Z",
+  "inboundOpen": false,
+  "outboundOpen": true,
+  "escortRequired": true
+}
