@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="100" fill="#0f2035"/>
+
+  <!-- Water -->
+  <ellipse cx="256" cy="300" rx="200" ry="80" fill="#1a5276" opacity="0.5"/>
+  <ellipse cx="256" cy="290" rx="170" ry="60" fill="#2180b9" opacity="0.3"/>
+
+  <!-- Strait lines -->
+  <path d="M 80 280 Q 200 260, 256 270 Q 310 280, 430 260" fill="none" stroke="#3498db" stroke-width="3" stroke-dasharray="12 6" opacity="0.6"/>
+  <path d="M 80 300 Q 200 280, 256 290 Q 310 300, 430 280" fill="none" stroke="#3498db" stroke-width="3" stroke-dasharray="12 6" opacity="0.6"/>
+
+  <!-- Land top (Iran) -->
+  <path d="M 40 140 L 470 140 L 470 200 Q 380 230, 300 240 Q 240 245, 180 230 Q 120 215, 40 200 Z" fill="#8B7355" stroke="#a08a6f" stroke-width="2"/>
+
+  <!-- Land bottom left (UAE) -->
+  <path d="M 40 340 Q 100 320, 160 330 Q 200 340, 210 370 L 40 370 Z" fill="#8B7355" stroke="#a08a6f" stroke-width="2"/>
+
+  <!-- Land bottom right (Oman) -->
+  <path d="M 310 370 Q 320 340, 360 330 Q 420 320, 470 340 L 470 370 Z" fill="#8B7355" stroke="#a08a6f" stroke-width="2"/>
+
+  <!-- Blockade X mark -->
+  <circle cx="256" cy="270" r="35" fill="none" stroke="#e74c3c" stroke-width="4" stroke-dasharray="8 4" opacity="0.8"/>
+  <line x1="238" y1="252" x2="274" y2="288" stroke="#e74c3c" stroke-width="5" stroke-linecap="round"/>
+  <line x1="274" y1="252" x2="238" y2="288" stroke="#e74c3c" stroke-width="5" stroke-linecap="round"/>
+
+  <!-- Ship dots -->
+  <circle cx="150" cy="270" r="6" fill="#e74c3c"/>
+  <circle cx="170" cy="258" r="5" fill="#e74c3c" opacity="0.7"/>
+  <circle cx="130" cy="280" r="4" fill="#f39c12"/>
+  <circle cx="350" cy="265" r="5" fill="#2ecc71"/>
+  <circle cx="380" cy="275" r="4" fill="#06b6d4"/>
+
+  <!-- Title text -->
+  <text x="256" y="110" text-anchor="middle" font-family="Arial, sans-serif" font-weight="900" font-size="48" fill="#ecf0f1" letter-spacing="4">HORMUZ</text>
+  <text x="256" y="145" text-anchor="middle" font-family="Arial, sans-serif" font-weight="600" font-size="20" fill="#06b6d4" letter-spacing="6">MONITOR</text>
+
+  <!-- Bottom subtitle -->
+  <text x="256" y="430" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" fill="#7f8c8d">호르무즈 해협 모니터링</text>
+
+  <!-- Compass mini -->
+  <g transform="translate(430, 170)">
+    <circle cx="0" cy="0" r="16" fill="#0f2035" stroke="#3498db" stroke-width="1.5" opacity="0.9"/>
+    <polygon points="0,-12 -3,-4 3,-4" fill="#e74c3c"/>
+    <polygon points="0,12 -3,4 3,4" fill="#7f8c8d"/>
+    <text x="0" y="-6" fill="#e74c3c" font-size="7" font-weight="bold" text-anchor="middle" font-family="Arial">N</text>
+  </g>
+</svg>
